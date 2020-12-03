@@ -3,10 +3,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-item-card',
-  templateUrl: './item-card.component.html',
-  styleUrls: ['./item-card.component.scss']
+  templateUrl: './collection-create-card.component.html',
+  styleUrls: ['./collection-create-card.component.scss']
 })
-export class ItemCardComponent implements OnInit {
+export class CollectionCreateCardComponent implements OnInit {
 
   // declare output variables
   @Output("name")

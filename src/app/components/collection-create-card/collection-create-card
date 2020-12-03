@@ -1,0 +1,9 @@
+  /home/jacob/Documents/University/Current/SimpleRanking/SimpleRanker/src/app/components/collection-create-card:
+  total used in directory 28 available 4.7 GiB
+  drwxr-xr-x 3 jacob jacob 4096 Dec  3 14:15 .
+  drwxr-xr-x 3 jacob jacob 4096 Dec  3 18:45 ..
+  drwxr-xr-x 2 jacob jacob 4096 Nov 18 13:14 dist
+  -rw-r--r-- 1 jacob jacob  939 Dec  3 14:15 collection-create-card.component.html
+  -rw-r--r-- 1 jacob jacob  233 Dec  3 14:15 collection-create-card.component.scss
+  -rw-r--r-- 1 jacob jacob  642 Dec  3 14:45 collection-create-card.component.spec.ts
+  -rw-r--r-- 1 jacob jacob 1538 Dec  3 14:22 collection-create-card.component.ts
