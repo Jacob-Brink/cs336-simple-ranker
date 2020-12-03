@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { QuizPageComponent } from './quiz-page/quiz-page.component';
+import { QuizPageComponent } from './components/quiz-page/quiz-page.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 @NgModule({
   declarations: [AppComponent, ItemCardComponent, QuizPageComponent],
