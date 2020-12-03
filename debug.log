@@ -1,0 +1,3 @@
+[1119/173318.246:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1119/174756.140:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1119/191949.137:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\jacob\AppData\Local\Temp\karma-25534795\Crashpad\attachments\a2fc2cfb-f402-4c51-afb0-61bfd7bc9817: The system cannot find the path specified. (0x3)
