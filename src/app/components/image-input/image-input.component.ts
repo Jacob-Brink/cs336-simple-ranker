@@ -4,7 +4,7 @@ import { NG_VALUE_ACCESSOR,
 	 ControlValueAccessor,
 	 AbstractControl,
 	 ValidationErrors,
-	 Validator
+	 Validator,
        } from '@angular/forms';
 
 //https://netbasal.com/how-to-implement-file-uploading-in-angular-reactive-forms-89a3fffa1a03
@@ -37,8 +37,7 @@ export class ImageInputComponent implements OnInit, Validator {
 
     // https://medium.com/@lukaonik/adding-custom-validation-to-the-custom-form-control-in-angular-f4e9b13b4728
     validate(control: AbstractControl): ValidationErrors {
-	const isNotImageFile = this.file && !(['png', 'jpg'].includes(this.file.name.split('.')[1].toLowerCase()));
-	console.log("asfd");
+	const isNotImageFile = this.file && this.file.name.split('.')[1] && !(['png', 'jpg'].includes(this.file.name.split('.')[1].toLowerCase()));
 	return isNotImageFile ? { invalidFileType: true } : null;
     }
 
@@ -49,8 +48,9 @@ export class ImageInputComponent implements OnInit, Validator {
     @HostListener('change', ['$event.target.files'])
     emitFiles( event: FileList ) {
 	const file = event && event.item(0); // if event is true then and only then do we grab event.item(0)
-	this.onChange(file);
 	this.file = file;
+	this.onValidatorChange();
+	this.onChange(file);
     }
 
     // resets file input
