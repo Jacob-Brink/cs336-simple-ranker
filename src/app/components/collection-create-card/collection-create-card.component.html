@@ -9,16 +9,10 @@
     </button>
 
   </mat-card-header>
-  
-  <div *ngIf="imageFile !== null">
-    <img src="{{imageFile}}" width="auto" height="100%">
-  </div>
-  
-  <div *ngIf="imageFile === null">
-    <p>Paste Image Here</p>
-  </div>
 
-  
+  <form [formGroup]="form">
+      <app-image-input formControlName="image"></app-image-input>
+  </form>
 
   <mat-card-content>
 
@@ -26,7 +20,7 @@
       
     <mat-form-field class="full-width" id="name-field">
       <mat-label>Name</mat-label>
-      <input type="Name" formControlName="title" [(ngModel)]="name" placeholder="Ex. Lord of The Rings" required="true" matInput>
+      <input type="Name" formControlName="title" placeholder="Ex. Lord of The Rings" required="true" matInput>
     </mat-form-field>
 
     <mat-form-field class="full-width" id="description-field">

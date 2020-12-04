@@ -13,12 +13,14 @@ import { MatInputModule } from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CollectionCreateCardComponent } from './components/collection-create-card/collection-create-card.component';
 import { CollectionPageComponent } from './pages/collection-page/collection-page.component';
+import { ImageInputComponent } from './components/image-input/image-input.component';
 
 @NgModule({
   declarations: [
       AppComponent,
       CollectionCreateCardComponent,
       CollectionPageComponent,
+      ImageInputComponent,
   ],
   imports: [
     BrowserModule,
