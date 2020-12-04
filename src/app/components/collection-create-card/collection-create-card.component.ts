@@ -40,25 +40,25 @@ export class CollectionCreateCardComponent implements OnInit {
       this.form = <FormGroup>this.controlContainer.control;
   }
 
-  // get user pasting image
-  onPaste(e: any ) {
-    const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+  // // get user pasting image
+  // onPaste(e: any ) {
+  //   const items = (e.clipboardData || e.originalEvent.clipboardData).items;
 
-    for (const item of items) {
-      if (item.type.indexOf('image') === 0) {
-        let blob = item.getAsFile();
+  //   for (const item of items) {
+  //     if (item.type.indexOf('image') === 0) {
+  //       let blob = item.getAsFile();
 
-        // Convert Blob to Image URL and avoid errors about safety
-        // https://stackoverflow.com/questions/51019467/convert-blob-to-image-url-and-use-in-image-src-to-display-image/51019799
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = () => {
-          this.imageFile = reader.result as String;
-        }
+  //       // Convert Blob to Image URL and avoid errors about safety
+  //       // https://stackoverflow.com/questions/51019467/convert-blob-to-image-url-and-use-in-image-src-to-display-image/51019799
+  //       const reader = new FileReader();
+  //       reader.readAsDataURL(blob);
+  //       reader.onloadend = () => {
+  //         this.imageFile = reader.result as String;
+  //       }
         
-      }
-    }
-  }
+  //     }
+  //   }
+  // }
 
     delete(): void {
 	this.onDelete.emit(this.id);
