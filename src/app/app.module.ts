@@ -12,11 +12,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CollectionCreateCardComponent } from './components/collection-create-card/collection-create-card.component';
+import { CollectionPageComponent } from './pages/collection-page/collection-page.component';
 
 @NgModule({
   declarations: [
       AppComponent,
       CollectionCreateCardComponent,
+      CollectionPageComponent,
   ],
   imports: [
     BrowserModule,
