@@ -1,8 +1,9 @@
+<form [formGroup]="form">
 <mat-card (paste)="onPaste($event)" class="item-card">
 
   <mat-card-header>
 
-    <mat-card-title>{{name === "" ? "New Item" : name}}</mat-card-title>
+    <mat-card-title>{{this.form.get('title').value === "" ? "New Item" : this.form.get('title').value}}</mat-card-title>
 
     <button mat-icon-button aria-label="Delete this card" id="delete-button" (click)="delete()">
       <mat-icon>delete</mat-icon>
@@ -10,14 +11,10 @@
 
   </mat-card-header>
 
-  <form [formGroup]="form">
       <app-image-input formControlName="image"></app-image-input>
-  </form>
 
   <mat-card-content>
-
-    <form [formGroup]="form">
-      
+  
     <mat-form-field class="full-width" id="name-field">
       <mat-label>Name</mat-label>
       <input type="Name" formControlName="title" placeholder="Ex. Lord of The Rings" required="true" matInput>
@@ -28,8 +25,8 @@
       <textarea formControlName="description" matInput></textarea>
     </mat-form-field>
     
-    </form>
     
   </mat-card-content>
 
 </mat-card>
+</form>
