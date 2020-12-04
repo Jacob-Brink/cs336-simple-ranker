@@ -1,15 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-collection-page',
-  templateUrl: './collection-page.component.html',
-  styleUrls: ['./collection-page.component.scss']
+    selector: 'app-collection-page',
+    templateUrl: './collection-page.component.html',
+    styleUrls: ['./collection-page.component.scss']
 })
 export class CollectionPageComponent implements OnInit {
+    items = new FormArray([]);
 
-  constructor() { }
+    
+    constructor() {
+	this.addItem();
+	this.addItem();
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
+    addItem(): void {
+	this.items.push(new FormGroup({
+	    title: new FormControl('Gandalf the Gray', Validators.required),
+	    description: new FormControl(),
+	    image: new FormControl(null, Validators.required),
+	}));
+    }
 }

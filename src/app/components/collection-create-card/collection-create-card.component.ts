@@ -1,13 +1,21 @@
 import { Component, EventEmitter, OnInit, Output, NgModule } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { FormGroup, ControlContainer } from '@angular/forms';
+
+/* CollectionCreateCardComponent is given a FormGroup and allows the user to fill it.
+ * - Getting the FormGroup to be passed down: https://stackoverflow.com/questions/38547389/how-can-i-pass-the-formgroup-of-a-parent-component-to-its-child-component-using
+ * 
+ */
 
 @Component({
-  selector: 'app-item-card',
+  selector: 'app-collection-create-card',
   templateUrl: './collection-create-card.component.html',
   styleUrls: ['./collection-create-card.component.scss']
 })
 export class CollectionCreateCardComponent implements OnInit {
+    public form: FormGroup;
 
+    
   // declare output variables
   @Output("name")
   nameResult: EventEmitter<any> = new EventEmitter();
@@ -23,10 +31,10 @@ export class CollectionCreateCardComponent implements OnInit {
   name: String = "";
   imageFile: String = null;
 
-  constructor(private sanitizer:DomSanitizer) { }
+    constructor(private sanitizer:DomSanitizer, private controlContainer: ControlContainer) { }
 
   ngOnInit(): void {
-
+      this.form = <FormGroup>this.controlContainer.control;
   }
 
   // get user pasting image

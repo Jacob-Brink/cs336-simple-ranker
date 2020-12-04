@@ -1,1 +1,3 @@
-<p>collection-page works!</p>
+<div *ngFor="let item of items.controls; index as i">
+  <app-collection-create-card [formGroup]="items.controls[i]"></app-collection-create-card>
+</div>
