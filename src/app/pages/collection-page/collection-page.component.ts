@@ -51,4 +51,9 @@ export class CollectionPageComponent implements OnInit {
 	    image: new FormControl(null, [Validators.required, this.requiredFileTypes(['png', 'jpg'])]),
 	}));
     }
+
+    removeItem(index: number): void {
+	console.log(index);
+	this.items.removeAt(index);
+    }
 }

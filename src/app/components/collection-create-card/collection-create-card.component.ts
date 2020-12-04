@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, NgModule } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, NgModule, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormGroup, ControlContainer } from '@angular/forms';
 
@@ -15,6 +15,9 @@ import { FormGroup, ControlContainer } from '@angular/forms';
 export class CollectionCreateCardComponent implements OnInit {
     public form: FormGroup;
 
+
+    @Input("index")
+    id: number;
     
   // declare output variables
   @Output("name")
@@ -25,7 +28,7 @@ export class CollectionCreateCardComponent implements OnInit {
   
   @Output() image: EventEmitter<any> = new EventEmitter();
 
-  @Output() onDeletion: EventEmitter<void> = new EventEmitter();
+  @Output() onDelete: EventEmitter<number> = new EventEmitter();
 
   // use name for two way binding for updating title text to name
   name: String = "";
@@ -57,8 +60,8 @@ export class CollectionCreateCardComponent implements OnInit {
     }
   }
 
-  delete(): void {
-    this.onDeletion.emit();
-  }
+    delete(): void {
+	this.onDelete.emit(this.id);
+    }
 
 }
