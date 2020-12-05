@@ -13,8 +13,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { QuizPageComponent } from './components/quiz-page/quiz-page.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { LogicComponent } from './components/logic/logic.component';
 @NgModule({
-  declarations: [AppComponent, ItemCardComponent, QuizPageComponent],
+  declarations: [AppComponent, ItemCardComponent, QuizPageComponent, LogicComponent],
   imports: [
     BrowserModule,
     FormsModule,
