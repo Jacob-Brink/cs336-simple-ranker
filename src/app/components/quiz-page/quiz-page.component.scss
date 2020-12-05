@@ -11,9 +11,11 @@
 .question {
   margin: auto;
   text-align: center;
+  margin: 20px;
 }
 
 .flex {
   display: flex;
   justify-content: center;
+  flex-shrink: 3;
 }
