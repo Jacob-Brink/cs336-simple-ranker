@@ -16,6 +16,11 @@ import { CollectionPageComponent } from './pages/collection-page/collection-page
 import { ImageInputComponent } from './components/image-input/image-input.component';
 import { ImageInputPreviewComponent } from './components/image-input-preview/image-input-preview.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { firebaseConfig } from './credentials';
+
+
 @NgModule({
   declarations: [
       AppComponent,
@@ -34,7 +39,10 @@ import { ImageInputPreviewComponent } from './components/image-input-preview/ima
     MatCardModule,
     MatButtonModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+      BrowserAnimationsModule,
+      
+      AngularFireModule.initializeApp(firebaseConfig),
+      AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
