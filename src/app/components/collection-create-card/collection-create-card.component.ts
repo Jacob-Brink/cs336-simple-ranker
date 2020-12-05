@@ -15,7 +15,6 @@ import { FormGroup, ControlContainer } from '@angular/forms';
 export class CollectionCreateCardComponent implements OnInit {
     public form: FormGroup;
 
-
     @Input("index")
     id: number;
 

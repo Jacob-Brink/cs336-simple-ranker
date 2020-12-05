@@ -25,9 +25,10 @@ import { NG_VALUE_ACCESSOR,
 	}
     ],   
 })
-export class ImageInputComponent implements OnInit, Validator {
+export class ImageInputComponent implements ControlValueAccessor, OnInit, Validator {
 
     file: File | null = null;
+    imageFile: any = null;
     onChange: Function;
     onValidatorChange: Function;
     constructor(private host: ElementRef<HTMLInputElement>) { }
@@ -47,9 +48,11 @@ export class ImageInputComponent implements OnInit, Validator {
 
     @HostListener('change', ['$event.target.files'])
     emitFiles( event: FileList ) {
+	console.log("yooo?");
+	console.log(".");
 	const file = event && event.item(0); // if event is true then and only then do we grab event.item(0)
 	this.file = file;
-	this.onValidatorChange();
+	//this.onValidatorChange();
 	this.onChange(file);
     }
 
