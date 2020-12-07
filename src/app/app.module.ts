@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -13,10 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { PageComponent } from './components/page/page.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PageComponent,
-  ],
+  declarations: [AppComponent, PageComponent, routingComponents],
   imports: [
     BrowserModule,
     FormsModule,
@@ -26,9 +23,9 @@ import { PageComponent } from './components/page/page.component';
     MatCardModule,
     MatButtonModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
