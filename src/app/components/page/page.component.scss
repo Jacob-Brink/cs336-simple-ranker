@@ -18,6 +18,11 @@
     display: block;
     left: 0;
     top: 0;
+    z-index: -1;
+}
+
+#page-content {
+    z-index: 100; // this forces the element to be displayed on top of elements with a smaller z-index. In this case, that would be .svg-class
 }
 
 #page-master-container {
