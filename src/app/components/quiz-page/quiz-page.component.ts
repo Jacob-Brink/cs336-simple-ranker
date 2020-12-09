@@ -52,11 +52,15 @@ export class QuizPageComponent implements OnInit {
 
   data: item[] = [this.dog1, this.dog2, this.dog3, this.dog4, this.dog5];
   ranked: item[] = [];
+  display: item[] = [];
 
   ngOnInit(): void {
     this.ranked.push(this.data[0]);
     this.item1 = this.data[0];
     this.item2 = this.data[1];
+    this.display.push(this.item1);
+    this.display.push(this.item2);
+
   }
 
   
