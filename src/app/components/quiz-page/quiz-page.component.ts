@@ -63,6 +63,42 @@ export class QuizPageComponent implements OnInit {
 
   }
 
+  reorder(item): void {
+
+    // Slot 1 constantly changes
+    // We keep asking till we can get slot 2 a spot in the ranked list
+
+    // 1 Middle one vs next item in unranked list
+    // •	If we pick Middle(slot 1) -> the bottom half middle(25% queartile) becomes slot 1 (go to beginning and repeat)
+    // •	If not found then we insert slot 2 beneath the middle one
+    // 2	If we pick Next item(slot2) -> the top half middle(25% quartile) becomes slot 1
+    // go to beginning and repeat)
+    // •	If not found then we insert slot 2 above the middle one
+
+
+    // Update and book keeping:
+
+    // Unshift data
+
+    // Slot 1 = new middle(round up)
+
+    // Slot 2 = next item in data
+
+
+  if(item == this.display[0]){
+    console.log("item1 has been picked")
+    console.log(item);
+    
+  }
+  else {
+    console.log("item 2 has been picked")
+    console.log(item);
+
+  }
+
+    console.log("reorder has been called")
+  }
+
   
 }
 
