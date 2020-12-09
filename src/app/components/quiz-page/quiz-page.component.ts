@@ -60,7 +60,7 @@ export class QuizPageComponent implements OnInit {
   ngOnInit(): void {
     // initialize the middles
     this.currentMiddle = 0;
-    this.lastMiddle = 0;
+    this.lastMiddle = -1;
 
 
     // initialize data 
@@ -110,13 +110,13 @@ export class QuizPageComponent implements OnInit {
       console.log("item1 has been picked")
 
       // if there is nothing lower than the currentMiddle item, add it directly below the current middle item.
-      if(this.currentMiddle === this.lastMiddle) {
+      if(this.currentMiddle === this.lastMiddle || (this.currentMiddle - this.lastMiddle) === 1) {
         console.log("there is nothing");
         //add item 2 to right below the ranked item1
         this.ranked.splice(this.currentMiddle + 1, 0, this.data[0]);
 
         //update lastmiddle
-        this.lastMiddle = 0;
+        this.lastMiddle = -1;
         // update the currentmiddle
         this.currentMiddle = parseInt(this.ranked.length / 2);
 
