@@ -2,9 +2,9 @@
 
 <div id="quiz-page">
   <p class="question">quiz-page works!</p>
-<div class="flex">
-  <app-item-card></app-item-card>
-  <app-item-card></app-item-card>
+<div class="flex" >
+  <app-item-card *ngFor= "let thing of data" [thing]="thing"></app-item-card>
+  <!-- <app-item-card></app-item-card> -->
   
 </div>
 

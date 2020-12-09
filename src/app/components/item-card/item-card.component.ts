@@ -7,7 +7,7 @@ import {
   NgModule
 } from '@angular/core';
 
-import { item } from '../quiz-page/quiz-page.component';
+import { item } from './quiz-page/quiz-page.component';
 
 @Component({
   selector: 'app-item-card',
@@ -16,7 +16,7 @@ import { item } from '../quiz-page/quiz-page.component';
 })
 export class ItemCardComponent implements OnInit {
   // declare input variables
-  @Input() item: item; //
+  @Input() thing: item; //
 
   // declare output variables
   @Output('name')

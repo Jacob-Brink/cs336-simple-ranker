@@ -10,7 +10,7 @@
 
     </mat-card-header>
 
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image src={{thing.link}} alt="Photo of a Shiba Inu">
     
     <!--
         Following code is copied from https://stackoverflow.com/questions/31867194/file-upload-with-angular-material
@@ -33,13 +33,13 @@
         <div>
 
             <mat-form-field class="full-width" id="name-field">
-              <mat-label>Name</mat-label>
+              <mat-label>: {{thing.name}}</mat-label>
               <input type="Name" [(ngModel)]="name" placeholder="Ex. Lord of The Rings" required="true" matInput>
             </mat-form-field>
 
             <mat-form-field class="full-width" id="description-field">
-                <mat-label>Description</mat-label>
-                <textarea matInput></textarea>
+                <mat-label></mat-label>
+                <textarea matInput> {{thing.id}}</textarea>
             </mat-form-field>
 
         </div>
