@@ -110,7 +110,7 @@ export class QuizPageComponent implements OnInit {
       console.log("item1 has been picked")
 
       // if there is nothing lower than the currentMiddle item, add it directly below the current middle item.
-      if(this.currentMiddle === this.lastMiddle || (this.currentMiddle - this.lastMiddle) === 1) {
+      if(this.currentMiddle === this.lastMiddle || Math.abs(this.currentMiddle - this.lastMiddle) === 1 || this.ranked.length - this.currentMiddle === 1) {
         console.log("there is nothing");
         //add item 2 to right below the ranked item1
         this.ranked.splice(this.currentMiddle + 1, 0, this.data[0]);
@@ -125,7 +125,7 @@ export class QuizPageComponent implements OnInit {
         ///////
         this.display.pop();
 
-        this.display.push(this.ranked[this.currentMiddle - 1]);
+        this.display.push(this.ranked[this.currentMiddle]);
         ///////////
         this.data.shift();
         this.display.push(this.data[0]);
@@ -155,7 +155,7 @@ export class QuizPageComponent implements OnInit {
     }
     else {
           // if there is nothing higher than the currentMiddle item, add it directly above the current middle item.
-      if(this.currentMiddle === this.lastMiddle || Math.abs(this.currentMiddle - this.lastMiddle) === 1 ) {
+      if(this.currentMiddle === this.lastMiddle || Math.abs(this.currentMiddle - this.lastMiddle) === 1 || this.currentMiddle === 0) {
         console.log("there is nothing");
         //add item 2 to right below the ranked item1
         this.ranked.splice(this.currentMiddle , 0, this.data[0]);
