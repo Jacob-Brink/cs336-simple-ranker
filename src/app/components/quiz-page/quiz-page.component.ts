@@ -122,6 +122,11 @@ export class QuizPageComponent implements OnInit {
 
         // update current display
         this.display.pop();
+        ///////
+        this.display.pop();
+
+        this.display.push(this.ranked[this.currentMiddle]);
+        ///////////
         this.data.shift();
         this.display.push(this.data[0]);
         
@@ -149,6 +154,39 @@ export class QuizPageComponent implements OnInit {
       }
     }
     else {
+          // if there is nothing higher than the currentMiddle item, add it directly above the current middle item.
+      if(this.currentMiddle === this.lastMiddle || Math.abs(this.currentMiddle - this.lastMiddle) === 1 ) {
+        console.log("there is nothing");
+        //add item 2 to right below the ranked item1
+        this.ranked.splice(this.currentMiddle , 0, this.data[0]);
+
+        //reset lastmiddle
+        this.lastMiddle = -1;
+        // update the currentmiddle
+        this.currentMiddle = parseInt((this.ranked.length - 1  )/ 2);
+
+        // update current display
+        this.display.pop();
+        this.display.pop();
+        // this.display[0] = this.ranked[this.currentMiddle];
+        this.data.shift();
+        this.display.push(this.ranked[this.currentMiddle]);
+        this.display.push(this.data[0]);
+      }
+
+      else {
+        console.log("there is something");
+        console.log(this.ranked.length);
+        console.log(parseInt((this.currentMiddle + this.ranked.length)/2));
+
+        //update last middle
+        this.lastMiddle = this.currentMiddle;
+        this.currentMiddle = parseInt((this.currentMiddle)/2);
+
+        //replace item1 with the newmiddle item in the ranked array and the 
+        this.display.shift();
+        this.display.splice(0, 0, this.ranked[this.currentMiddle]);
+      }
       console.log("item 2 has been picked")
 
     }
@@ -159,6 +197,8 @@ export class QuizPageComponent implements OnInit {
     console.log(this.ranked);
     console.log("this is the display");
     console.log(this.display);
+
+    console.log(this.data);
 
   }
 
