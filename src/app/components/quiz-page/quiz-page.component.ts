@@ -125,7 +125,7 @@ export class QuizPageComponent implements OnInit {
         ///////
         this.display.pop();
 
-        this.display.push(this.ranked[this.currentMiddle]);
+        this.display.push(this.ranked[this.currentMiddle - 1]);
         ///////////
         this.data.shift();
         this.display.push(this.data[0]);
