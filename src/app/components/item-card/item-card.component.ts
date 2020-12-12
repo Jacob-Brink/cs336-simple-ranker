@@ -7,7 +7,7 @@ import {
   NgModule
 } from '@angular/core';
 
-import { item } from './quiz-page/quiz-page.component';
+import { item } from '../quiz-page/quiz-page.component';
 
 @Component({
   selector: 'app-item-card',

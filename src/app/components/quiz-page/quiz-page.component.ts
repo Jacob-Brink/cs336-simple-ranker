@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { item } from "../QuizPageComponent";
+// import { item } from "../QuizPageComponent";
 
 @Component({
   selector: 'app-quiz-page',
@@ -8,12 +8,7 @@ import { item } from "../QuizPageComponent";
 })
 export class QuizPageComponent implements OnInit {
   constructor() {
-    type item = {
-      id: number;
-      name: string;
-      link: string;
-      description?: string;
-    };
+
   }
   dog1: item = {
     id: 1,
@@ -203,7 +198,16 @@ export class QuizPageComponent implements OnInit {
   }
 
   
+
+  
 }
+
+  export  type item = {
+      id: number;
+      name: string;
+      link: string;
+      description?: string;
+    };
 
 
 
