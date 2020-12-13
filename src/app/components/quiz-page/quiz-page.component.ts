@@ -42,20 +42,29 @@ export class QuizPageComponent implements OnInit {
     link: 'https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg'
   };
 
+  dog6: item = {
+    id: 6,
+    name: "dog6",
+    link: 'https://dogcatselfie.com/content/uploads/images/April2017/Animaux-et-emotions-19.jpg'
+  }
+
+  dog7: item = {
+    id: 7, 
+    name: "dog7",
+    link: 'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/dog_cool_summer_slideshow/1800x1200_dog_cool_summer_other.jpg'
+  }
   item1: item;
   item2: item;
 
-  currentMiddle: number = 0;
-  lastMiddle: number = 0;
-  data: item[] = [this.dog1, this.dog2, this.dog3, this.dog4, this.dog5];
+  low: number = 0;
+  high: number = 0;
+  data: item[] = [];
   ranked: item[] = [];
   display: item[] = [];
 
   // This refreshes the whole ranked/data stuff
   ngOnInit(): void {
-    // initialize the middles
-    this.currentMiddle = 0;
-    this.lastMiddle = -1;
+
 
 
     // initialize data 
@@ -63,6 +72,10 @@ export class QuizPageComponent implements OnInit {
     
     //add current first item to ranked array
     this.ranked.push(this.data[0]);
+
+    // initialize the ranges
+    this.low = 0; // low is the highest ranked item
+    this.high = 0; //high is the lowest ranked item
     
     //add current first item to display array
     this.display.push(this.ranked[0]);
@@ -104,23 +117,23 @@ export class QuizPageComponent implements OnInit {
     if(item == this.display[0]){
       console.log("item1 has been picked")
 
-      // if there is nothing lower than the currentMiddle item, add it directly below the current middle item.
-      if(this.currentMiddle === this.lastMiddle || Math.abs(this.currentMiddle - this.lastMiddle) === 1 || this.ranked.length - this.currentMiddle === 1) {
+      // if low and high are right next to each other, add it directly below the current high item.
+      if(this.high <= this.low ) {
         console.log("there is nothing");
         //add item 2 to right below the ranked item1
-        this.ranked.splice(this.currentMiddle + 1, 0, this.data[0]);
+        this.ranked.splice(this.high + 1, 0, this.data[0]);
 
-        //update lastmiddle
-        this.lastMiddle = -1;
-        // update the currentmiddle
-        this.currentMiddle = parseInt(this.ranked.length / 2);
+        //update low
+        this.low = 0;
+        // update the high
+        this.high = parseInt((this.ranked.length -1 ));
 
         // update current display
         this.display.pop();
         ///////
         this.display.pop();
 
-        this.display.push(this.ranked[this.currentMiddle]);
+        this.display.push(this.ranked[parseInt((this.low + this.high)/2)]);
         ///////////
         this.data.shift();
         this.display.push(this.data[0]);
@@ -133,15 +146,15 @@ export class QuizPageComponent implements OnInit {
       else {
         console.log("there is something");
         console.log(this.ranked.length);
-        console.log(parseInt((this.currentMiddle + this.ranked.length)/2));
+        // console.log(parseInt((this.currentMiddle + this.ranked.length)/2));
 
-        //update last middle
-        this.lastMiddle = this.currentMiddle;
-        this.currentMiddle = parseInt((this.ranked.length + this.currentMiddle)/2);
+        //update low(higher ranked item)
+        this.low = (this.ranked.indexOf(this.display[0]) + 1);
+        
 
         //replace item1 with the newmiddle item in the ranked array
         this.display.shift();
-        this.display.splice(0, 0, this.ranked[this.currentMiddle]);
+        this.display.splice(0, 0, this.ranked[parseInt(Math.floor((this.low + this.high)/2))]);
 
 
         
@@ -150,43 +163,44 @@ export class QuizPageComponent implements OnInit {
     }
     else {
           // if there is nothing higher than the currentMiddle item, add it directly above the current middle item.
-      if(this.currentMiddle === this.lastMiddle || Math.abs(this.currentMiddle - this.lastMiddle) === 1 || this.currentMiddle === 0) {
+      if(this.high <= this.low + 1) {
         console.log("there is nothing");
         //add item 2 to right below the ranked item1
-        this.ranked.splice(this.currentMiddle , 0, this.data[0]);
+        this.ranked.splice(this.low, 0, this.data[0]);
 
-        //reset lastmiddle
-        this.lastMiddle = -1;
-        // update the currentmiddle
-        this.currentMiddle = parseInt((this.ranked.length - 1  )/ 2);
+        //reset low
+        this.low = 0;
+        // reset the high
+        this.high = parseInt((this.ranked.length -1 ));
 
         // update current display
         this.display.pop();
         this.display.pop();
-        // this.display[0] = this.ranked[this.currentMiddle];
+
+
+        this.display.push(this.ranked[parseInt((this.low + this.high)/2)]);
+
         this.data.shift();
-        this.display.push(this.ranked[this.currentMiddle]);
         this.display.push(this.data[0]);
       }
 
       else {
         console.log("there is something");
         console.log(this.ranked.length);
-        console.log(parseInt((this.currentMiddle + this.ranked.length)/2));
+        // console.log(parseInt((this.currentMiddle + this.ranked.length)/2));
 
-        //update last middle
-        this.lastMiddle = this.currentMiddle;
-        this.currentMiddle = parseInt((this.currentMiddle)/2);
+        //update high(lower ranked item)
+        this.high = this.ranked.indexOf(this.display[0]);
 
-        //replace item1 with the newmiddle item in the ranked array and the 
+        //replace item1 with the newmiddle item in the ranked array
         this.display.shift();
-        this.display.splice(0, 0, this.ranked[this.currentMiddle]);
+        this.display.splice(0, 0, this.ranked[parseInt(Math.floor((this.low + this.high)/2))]);
       }
       console.log("item 2 has been picked")
 
     }
-    console.log(this.lastMiddle);
-    console.log(this.currentMiddle);
+    console.log(this.low);
+    console.log(this.high);
 
     console.log("this is the rank")
     console.log(this.ranked);
