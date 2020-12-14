@@ -1,8 +1,4 @@
 <app-page>
   <!-- <p>main-page works! eyoooo</p> -->
-  <div class="button-container">
-    <a routerLink="/collection">
-      <button class="btn create-button">Create</button>
-    </a>
-  </div>
+  <app-button (onClick)="create($event)" [label]="create"></app-button>
 </app-page>

@@ -11,9 +11,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { PageComponent } from './components/page/page.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
-  declarations: [AppComponent, PageComponent, routingComponents],
+  declarations: [AppComponent, PageComponent, routingComponents, ButtonComponent],
   imports: [
     BrowserModule,
     FormsModule,
