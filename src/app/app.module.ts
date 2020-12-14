@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { RankerServiceService } from './ranker-service.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { MatInputModule } from '@angular/material/input';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    RankerServiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
