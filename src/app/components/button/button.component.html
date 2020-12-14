@@ -1,5 +1,9 @@
 <div class="button-container">
-  <a routerLink="/collection">
-    <button class="btn create-button">Create</button>
-  </a>
+  <button
+    type="button"
+    class="btn create-button"
+    (click)="onClickButton($event)"
+  >
+    {{ label }}
+  </button>
 </div>

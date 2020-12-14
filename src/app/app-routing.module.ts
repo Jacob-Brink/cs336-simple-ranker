@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'collection', component: CollectionPageComponent },
   { path: 'quiz', component: QuizPageComponent },
   { path: 'final', component: FinalPageComponent },
-  { path: '**', component: FinalPageComponent },
+  { path: '**', component: MainPageComponent },
 ];
 
 @NgModule({
