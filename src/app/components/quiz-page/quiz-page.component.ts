@@ -71,7 +71,7 @@ export class QuizPageComponent implements OnInit {
     this.data = [this.dog1, this.dog2, this.dog3, this.dog4, this.dog5];
     
     //add current first item to ranked array
-    this.ranked.push(this.data[0]);
+    this.ranked.push(this.data[this.data.length - 1]);
 
     // initialize the ranges
     this.low = 0; // low is the highest ranked item
@@ -80,15 +80,15 @@ export class QuizPageComponent implements OnInit {
     //add current first item to display array
     this.display.push(this.ranked[0]);
     
-    // delete current first item
-    this.data.shift();
+    // delete current last item
+    this.data.pop();
     
     // add current second item to display
-    this.display.push(this.data[0]);
+    this.display.push(this.data[this.data.length - 1]);
 
     // might not need this
-    this.item1 = this.ranked[this.currentMiddle];
-    this.item2 = this.data[1];
+    // this.item1 = this.ranked[this.currentMiddle];
+    // this.item2 = this.data[1];
 
   }
 
@@ -121,22 +121,22 @@ export class QuizPageComponent implements OnInit {
       if(this.high <= this.low ) {
         console.log("there is nothing");
         //add item 2 to right below the ranked item1
-        this.ranked.splice(this.high + 1, 0, this.data[0]);
+        this.ranked.splice(this.high + 1, 0, this.data[this.data.length - 1]);
 
         //update low
         this.low = 0;
         // update the high
-        this.high = parseInt((this.ranked.length -1 ));
+        this.high = ((this.ranked.length -1 ));
 
         // update current display
         this.display.pop();
         ///////
         this.display.pop();
 
-        this.display.push(this.ranked[parseInt((this.low + this.high)/2)]);
+        this.display.push(this.ranked[parseInt(((this.low + this.high)/2).toString())]);
         ///////////
-        this.data.shift();
-        this.display.push(this.data[0]);
+        this.data.pop();
+        this.display.push(this.data[this.data.length - 1]);
         
 
 
@@ -154,7 +154,7 @@ export class QuizPageComponent implements OnInit {
 
         //replace item1 with the newmiddle item in the ranked array
         this.display.shift();
-        this.display.splice(0, 0, this.ranked[parseInt(Math.floor((this.low + this.high)/2))]);
+        this.display.splice(0, 0, this.ranked[parseInt((Math.floor((this.low + this.high)/2)).toString())]);
 
 
         
@@ -165,23 +165,23 @@ export class QuizPageComponent implements OnInit {
           // if there is nothing higher than the currentMiddle item, add it directly above the current middle item.
       if(this.high <= this.low + 1) {
         console.log("there is nothing");
-        //add item 2 to right below the ranked item1
-        this.ranked.splice(this.low, 0, this.data[0]);
+        //add item 2 to right above the ranked item1
+        this.ranked.splice(this.low, 0, this.data[this.data.length - 1]);
 
         //reset low
         this.low = 0;
         // reset the high
-        this.high = parseInt((this.ranked.length -1 ));
+        this.high = ((this.ranked.length -1 ));
 
         // update current display
         this.display.pop();
         this.display.pop();
 
 
-        this.display.push(this.ranked[parseInt((this.low + this.high)/2)]);
+        this.display.push(this.ranked[parseInt(((this.low + this.high)/2).toString())]);
 
-        this.data.shift();
-        this.display.push(this.data[0]);
+        this.data.pop();
+        this.display.push(this.data[this.data.length - 1]);
       }
 
       else {
@@ -194,7 +194,7 @@ export class QuizPageComponent implements OnInit {
 
         //replace item1 with the newmiddle item in the ranked array
         this.display.shift();
-        this.display.splice(0, 0, this.ranked[parseInt(Math.floor((this.low + this.high)/2))]);
+        this.display.splice(0, 0, this.ranked[parseInt((Math.floor((this.low + this.high)/2)).toString())]);
       }
       console.log("item 2 has been picked")
 
