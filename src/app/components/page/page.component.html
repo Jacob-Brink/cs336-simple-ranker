@@ -1,0 +1,46 @@
+<div id="page-master-container">
+  <div style="flex: 1">
+    <h1 id="title">
+      <i>{{ title }}</i>
+    </h1>
+  </div>
+
+  <div style="flex: 1">
+    <!--- display content of page --->
+    <ng-content></ng-content>
+  </div>
+
+  <div id="background-container">
+    <!-- <svg
+      class="svg-class"
+      viewBox="0 0 200 100"
+      preserveAspectRatio="xMinYMax slice"
+    >
+      <path
+        d="M 0 80 Q 25 55 30 75 T 120 50 200 1000 0 1000 Z"
+        stroke="none"
+        stroke-width="1"
+        fill="#d1bcff"
+      />
+    </svg> -->
+    <!-- <svg -->
+    <!--   class="svg-class" -->
+    <!--   viewBox="0 0 200 100" -->
+    <!--   preserveAspectRatio="xMinYMin slice" -->
+    <!-- > -->
+    <!--   <\!-- <path d="M 0 40 Q 10 20 0 2 T 20 2 80 2 120 4 140 20 170 20 200 -1000 0 -1000 Z" stroke="none" stroke-width="1" fill="#d1bcff" />							   -\-> -->
+    <!-- </svg> -->
+    <svg
+      width="1920"
+      height="1080"
+      viewBox="0 0 1920 1080"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M378.5 500.5C253.117 535.118 142.5 476.479 142.5 332C142.5 26 933.5 -264.5 -85.5 -57C-593.172 46.3778 -238.5 746.5 -46.5 1434C107.1 1984 1115.17 1562.83 1600 1283.5C1951.67 1189.33 1955 1283.5 1955 912.5C1955 603.75 1924 555 910 1019C578.043 1170.9 1050 570.5 205 912.5C-144.222 1053.84 594 441 378.5 500.5Z"
+        fill="#d1bcff"
+      />
+    </svg>
+  </div>
+</div>

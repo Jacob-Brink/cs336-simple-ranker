@@ -1,0 +1,46 @@
+#svg-container {
+}
+
+#title {
+  padding: 10px;
+  margin-top: 20px;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 120%;
+  width: 100%;
+  display: block;
+  z-index: -1;
+}
+
+// .svg-class {
+//   height: 100%;
+//   width: 100%;
+//   position: absolute;
+//   display: block;
+//   left: 0;
+//   top: 0;
+//   z-index: -1;
+// }
+
+#page-content {
+  z-index: 100; // this forces the element to be displayed on top of elements with a smaller z-index. In this case, that would be .svg-class
+}
+
+#page-master-container {
+  // height: 100%;
+  width: 100%;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+}
