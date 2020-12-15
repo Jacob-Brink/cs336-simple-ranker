@@ -8,6 +8,7 @@
 
   <div *ngFor="let item of items.controls; index as i">
     <app-collection-create-card
+      class="card"
       [index]="i"
       [formGroup]="items.controls[i]"
       (onDelete)="removeItem($event)"

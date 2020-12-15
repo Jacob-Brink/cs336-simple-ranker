@@ -21,4 +21,17 @@
 
 #delete-button {
   margin-left: auto;
+  // background-color: lightgrey;
+}
+
+#delete-button:hover {
+  transition: background-color 0.5s ease;
+  background-color: lightgray;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 3;
+  flex-direction: row;
 }

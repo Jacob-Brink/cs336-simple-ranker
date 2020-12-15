@@ -3,16 +3,17 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
-  styleUrls: ['./page.component.scss']
+  styleUrls: ['./page.component.scss'],
 })
 export class PageComponent implements OnInit {
+  @Input()
+  title: string = '';
 
-    @Input()
-    title: string = "";
-    
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  functioncall(event) {
+    console.log('functioncall', event);
   }
-
 }

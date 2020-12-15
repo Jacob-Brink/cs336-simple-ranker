@@ -4,3 +4,23 @@
   align-items: center;
   flex-direction: column;
 }
+
+.card {
+  max-width: 400px;
+  margin: 25px;
+}
+
+#create-new-item {
+  order: 1px solid #3b0d9c;
+  border-radius: 5px;
+  background: #3b0d9c;
+  padding: 10px 10px;
+  font-size: 14px;
+  color: white;
+  // font-family: "montserrat";
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}

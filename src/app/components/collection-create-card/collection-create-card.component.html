@@ -1,12 +1,11 @@
 <form [formGroup]="form">
   <mat-card class="item-card">
-    <mat-card-header>
-      <mat-card-title>{{
+    <mat-card-header class="flex">
+      <mat-card-title class="title">{{
         this.form.get("title").value === ""
           ? "New Item"
           : this.form.get("title").value
       }}</mat-card-title>
-
       <button
         mat-icon-button
         aria-label="Delete this card"
