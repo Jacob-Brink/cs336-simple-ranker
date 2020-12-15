@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import * as firebase from 'firebase';
 import { forkJoin, Observable } from 'rxjs';
 
 interface FirestoreItem {
@@ -43,14 +44,18 @@ export class RankerServiceService {
   //https://medium.com/@AnkitMaheshwariIn/how-to-upload-and-display-image-file-in-pwa-angular-project-using-firebase-cloud-storage-and-95763bc83da7
   uploadImage(file: File): Observable<string> {
     // create a random id
-    const randomId: string = Math.random().toString(36).substring(2);
-    // create a reference to the storage bucket location
-    const ref: AngularFireStorageReference = this.afStorage.ref('/images/' + randomId);
-    // the put method creates an AngularFireUploadTask
-    // and kicks off the upload
-    const task: AngularFireUploadTask = ref.put(file);
+    const randomId = Math.random().toString(36).substring(2);
 
-    return ref.getDownloadURL();
+    return new Observable<any>((observer) => {
+      const filePath = `Images/${Date.now()}${randomId}`;
+      this.afStorage.upload(filePath, file).then(data => {
+        data.ref.getDownloadURL().then(url => {
+          observer.next(url);
+          observer.complete();
+        });
+      });
+    });
+    
   }
 
   constructor(private db: AngularFirestore, private afStorage: AngularFireStorage) { }
@@ -81,7 +86,6 @@ export class RankerServiceService {
     let itemUploads = newCollection.data.map(item => {
       return new Observable<FirestoreItem>((observer) => {
         this.uploadImage(item.image).subscribe(downloadURL => {
-          
           // convert item to firestore item by using the downloadURL of the image uploaded on our cloud storage
           const firestoreItem: FirestoreItem = {
             id: item.id,

@@ -1,6 +1,16 @@
-<div *ngFor="let item of items.controls; index as i">
-  <app-collection-create-card [index]="i" [formGroup]="items.controls[i]" (onDelete)="removeItem($event)"></app-collection-create-card>
-</div>
-<button id="create-new-item" (click)="addItem()">Add Item</button>
+<form [formGroup]="form">
+  
+  <mat-form-field class="full-width" id="name-field">
+    <mat-label>Question</mat-label>
+    <input type="Name" formControlName="question" required="true" matInput>
+  </mat-form-field>
+  
+  <div *ngFor="let item of items.controls; index as i">
+    <app-collection-create-card [index]="i" [formGroup]="items.controls[i]" (onDelete)="removeItem($event)"></app-collection-create-card>
+  </div>
 
-<button type="submit" [disabled]="!items.valid">Submit</button>
+  <button id="create-new-item" (click)="addItem()">Add Item</button>
+
+  <button type="submit" [disabled]="!items.valid" (click)="onSubmit()">Submit</button>
+
+</form>
