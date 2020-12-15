@@ -1,0 +1,6 @@
+<div *ngFor="let item of items.controls; index as i">
+  <app-collection-create-card [index]="i" [formGroup]="items.controls[i]" (onDelete)="removeItem($event)"></app-collection-create-card>
+</div>
+<button id="create-new-item" (click)="addItem()">Add Item</button>
+
+<button type="submit" [disabled]="!items.valid">Submit</button>

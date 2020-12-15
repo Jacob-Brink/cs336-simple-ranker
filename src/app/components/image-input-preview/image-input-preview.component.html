@@ -1,0 +1,14 @@
+<div id="main-container">
+
+  <div id="image-display">
+    <img *ngIf="imageFile" id="image-preview" [src]="imageFile" class="image-holder">
+    <div *ngIf="!imageFile" id="image-placeholder" class="image-holder"></div>
+  </div>
+
+  <div id="image-input">
+    <form [formGroup]="form">
+      <app-image-input formControlName="image"></app-image-input>
+    </form>
+  </div>
+
+</div>
