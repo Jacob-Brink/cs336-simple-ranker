@@ -1,0 +1,16 @@
+.final-page {
+  width: 100%;
+  // min-width: 2000px;
+  height: auto;
+  margin: 0 auto;
+  display: inline;
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 3;
+  flex-direction: column;
+  display: flex;
+}
