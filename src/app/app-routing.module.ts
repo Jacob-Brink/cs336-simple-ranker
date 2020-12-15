@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'collection', component: CollectionPageComponent },
   { path: 'quiz', component: QuizPageComponent },
   { path: 'final', component: FinalPageComponent },
+  { path: 'final:rankid', component: FinalPageComponent },
   { path: '**', component: MainPageComponent },
 ];
 
