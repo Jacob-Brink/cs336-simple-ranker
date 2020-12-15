@@ -3,4 +3,4 @@
 </div>
 <button id="create-new-item" (click)="addItem()">Add Item</button>
 
-<button type="submit" [disabled]="!items.valid">Submit</button>
+<button type="submit" [disabled]="!items.valid" (click)="onSubmit()">Submit</button>

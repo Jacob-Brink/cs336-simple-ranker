@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, NgModule, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormGroup, ControlContainer } from '@angular/forms';
+import { RankerServiceService } from 'src/app/ranker-service.service';
 
 /* CollectionCreateCardComponent is given a FormGroup and allows the user to fill it.
  * - Getting the FormGroup to be passed down: https://stackoverflow.com/questions/38547389/how-can-i-pass-the-formgroup-of-a-parent-component-to-its-child-component-using
@@ -24,31 +25,11 @@ export class CollectionCreateCardComponent implements OnInit {
     name: String = "";
     imageFile: String = null;
     
-    constructor(private sanitizer:DomSanitizer, private controlContainer: ControlContainer) { }
+    constructor(private sanitizer:DomSanitizer, private controlContainer: ControlContainer, private rankerService: RankerServiceService) { }
 
     ngOnInit(): void {
-	this.form = <FormGroup>this.controlContainer.control;
+	    this.form = <FormGroup>this.controlContainer.control;
     }
-    
-    // // get user pasting image
-    // onPaste(e: any ) {
-    //   const items = (e.clipboardData || e.originalEvent.clipboardData).items;
-    
-    //   for (const item of items) {
-    //     if (item.type.indexOf('image') === 0) {
-    //       let blob = item.getAsFile();
-    
-    //       // Convert Blob to Image URL and avoid errors about safety
-    //       // https://stackoverflow.com/questions/51019467/convert-blob-to-image-url-and-use-in-image-src-to-display-image/51019799
-    //       const reader = new FileReader();
-    //       reader.readAsDataURL(blob);
-    //       reader.onloadend = () => {
-    //         this.imageFile = reader.result as String;
-    //       }
-    
-    //     }
-    //   }
-    // }
     
     delete(): void {
 	this.onDelete.emit(this.id);
