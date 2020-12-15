@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RankerServiceService } from './ranker-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SimpleRanker';
+  constructor(private rankerService: RankerServiceService) {
+    rankerService.getRanking('fffff');
+  }
 }

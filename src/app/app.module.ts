@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { firebaseConfig } from './credentials';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,10 +19,8 @@ import { CollectionCreateCardComponent } from './components/collection-create-ca
 import { CollectionPageComponent } from './pages/collection-page/collection-page.component';
 import { ImageInputComponent } from './components/image-input/image-input.component';
 import { ImageInputPreviewComponent } from './components/image-input-preview/image-input-preview.component';
+import { RankerServiceService } from './ranker-service.service';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { firebaseConfig } from './credentials';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { firebaseConfig } from './credentials';
       ImageInputPreviewComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -44,7 +48,9 @@ import { firebaseConfig } from './credentials';
       AngularFireModule.initializeApp(firebaseConfig),
       AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [
+    RankerServiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
