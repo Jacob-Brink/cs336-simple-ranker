@@ -8,7 +8,5 @@ import { RankerServiceService } from './ranker-service.service';
 })
 export class AppComponent {
   title = 'SimpleRanker';
-  constructor(private rankerService: RankerServiceService) {
-    rankerService.getRanking('fffff');
-  }
+  constructor() { }
 }
