@@ -17,9 +17,23 @@ import { MatInputModule } from '@angular/material/input';
 import { PageComponent } from './components/page/page.component';
 import { RankerServiceService } from './ranker-service.service';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { CollectionCreateCardComponent } from './components/collection-create-card/collection-create-card.component';
+import { CollectionPageComponent } from './pages/collection-page/collection-page.component';
+import { ImageInputComponent } from './components/image-input/image-input.component';
+import { ImageInputPreviewComponent } from './components/image-input-preview/image-input-preview.component';
+
 
 @NgModule({
-  declarations: [AppComponent, PageComponent, routingComponents],
+  declarations: [
+      AppComponent,
+      PageComponent, 
+      routingComponents,
+      CollectionCreateCardComponent,
+      CollectionPageComponent,
+      ImageInputComponent,
+      ImageInputPreviewComponent,
+  ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
@@ -27,6 +41,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatCardModule,
