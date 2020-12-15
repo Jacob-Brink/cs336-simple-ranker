@@ -11,7 +11,8 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {}
 
   label1 = 'create';
-  label2 = 'final page';
+  label2 = 'quiz';
+  label3 = 'final page';
 
   functioncall(event) {
     console.log('functioncall', event);
