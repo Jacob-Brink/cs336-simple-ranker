@@ -1,0 +1,21 @@
+.quiz-page {
+  width: 100%;
+  // min-width: 2000px;
+  height: auto;
+  margin: 0 auto;
+  display: inline;
+  text-align: center;
+  background-color: aquamarine;
+}
+
+.question {
+  margin: auto;
+  text-align: center;
+  margin: 20px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 3;
+}

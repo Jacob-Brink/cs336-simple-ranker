@@ -23,6 +23,7 @@ import { RankerServiceService } from './ranker-service.service';
 import { PageComponent } from './components/page/page.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ItemCardComponent } from './components/item-card/item-card.component';
     AngularFirestoreModule,
   ],
   providers: [RankerServiceService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

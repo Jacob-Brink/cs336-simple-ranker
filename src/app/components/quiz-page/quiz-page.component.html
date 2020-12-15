@@ -1,1 +1,14 @@
-<p>quiz-page works!</p>
+<!-- <app-item-card></app-item-card> -->
+
+<div id="quiz-page">
+  <p class="question">quiz-page works!</p>
+  <div class="flex">
+    <app-item-card
+      (click)="reorder(thing)"
+      *ngFor="let thing of display"
+      [thing]="thing"
+    ></app-item-card>
+    <!-- <app-item-card></app-item-card> -->
+  </div>
+</div>
+<!-- <app-item-card></app-item-card> -->
