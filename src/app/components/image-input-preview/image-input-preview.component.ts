@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, ControlContainer } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,10 @@ export class ImageInputPreviewComponent implements OnInit {
 
     public form: FormGroup;
     imageFile: any = null;
-    
+	
+	@Input()
+	id: number;
+	
     constructor(private controlContainer: ControlContainer) { }
 
     ngOnInit(): void {
