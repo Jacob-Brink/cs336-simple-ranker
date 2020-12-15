@@ -86,7 +86,6 @@ export class RankerServiceService {
     let itemUploads = newCollection.data.map(item => {
       return new Observable<FirestoreItem>((observer) => {
         this.uploadImage(item.image).subscribe(downloadURL => {
-          console.log(downloadURL);
           // convert item to firestore item by using the downloadURL of the image uploaded on our cloud storage
           const firestoreItem: FirestoreItem = {
             id: item.id,
