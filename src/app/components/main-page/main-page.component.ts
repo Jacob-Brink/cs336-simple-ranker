@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {PageEvent} from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-main-page',
@@ -8,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class MainPageComponent implements OnInit {
   constructor() {}
 
+  
   ngOnInit(): void {}
 
   label1 = 'CREATE';

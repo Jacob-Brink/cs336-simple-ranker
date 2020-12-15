@@ -1,12 +1,44 @@
-<app-page class="header" title="EasyRanker">
+
+    
+      <mat-form-field>
+        <mat-label>List length</mat-label>
+        <input matInput [(ngModel)]="length" type="number">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>Page size</mat-label>
+        <input matInput [(ngModel)]="pageSize" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Page size options</mat-label>
+        <input matInput [ngModel]="pageSizeOptions" (ngModelChange)="setPageSizeOptions($event)"
+               [ngModelOptions]="{updateOn: 'blur'}" placeholder="Ex. 10,25,50">
+      </mat-form-field>
+
+      <div style="flex: 1">
+        <mat-paginator [length]="length"
+                     [pageSizeOptions]="pageSizeOptions"
+                     (page)="pageEvent = $event">
+        </mat-paginator>
+      
+      </div>
+      
+      <div *ngIf="pageEvent">
+        <h5>Page Change Event Properties</h5>
+        <div>List length: {{pageEvent.length}}</div>
+        <div>Page size: {{pageEvent.pageSize}}</div>
+        <div>Page index: {{pageEvent.pageIndex}}</div>
+      </div>
+
+<!-- <app-page class="header" title="EasyRanker"> -->
   <!-- <nav>
     <a routerLink="/collection">Collection</a>
     <a routerLink="/quiz">Quiz</a>
     <a routerLink="/final">Final</a>
   </nav> -->
 
-  <router-outlet></router-outlet>
+  <!-- <router-outlet></router-outlet> -->
 
   <!-- <app-item-card></app-item-card>  -->
   <!-- I think we need routes to everything because routing will also display stuff in app.component.html as well -->
-</app-page>
+<!-- </app-page> -->

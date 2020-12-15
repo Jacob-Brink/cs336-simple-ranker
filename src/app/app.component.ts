@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { RankerServiceService } from './ranker-service.service';
 
 @Component({
@@ -8,5 +9,20 @@ import { RankerServiceService } from './ranker-service.service';
 })
 export class AppComponent {
   title = 'SimpleRanker';
+
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+
+// MatPaginator Output
+pageEvent: PageEvent;
+
+setPageSizeOptions(setPageSizeOptionsInput: string) {
+  if (setPageSizeOptionsInput) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  }
+}
+
+
   constructor() { }
 }
