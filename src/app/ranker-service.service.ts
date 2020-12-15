@@ -1,4 +1,21 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
+import { AngularFireStorage, AngularFireStorageModule, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import { forkJoin, Observable } from 'rxjs';
+import { finalize, tap } from 'rxjs/operators';
+
+interface FirestoreItem {
+  id: number;
+  name: string;
+  description?: string;
+  imageDownloadURL: string;
+}
+
+interface FirestoreCollection {
+  id: string;
+  question: string;
+  data: Array<FirestoreItem>;
+}
 
 export interface Item {
   id: number;
@@ -24,61 +41,78 @@ export interface Rank {
 })
 export class RankerServiceService {
 
-  fakeCollectionID: string = '3J4ITH#F';
+  //https://medium.com/@AnkitMaheshwariIn/how-to-upload-and-display-image-file-in-pwa-angular-project-using-firebase-cloud-storage-and-95763bc83da7
+  uploadImage(file: File): Observable<string> {
+    // create a random id
+    const randomId: string = Math.random().toString(36).substring(2);
+    // create a reference to the storage bucket location
+    const ref: AngularFireStorageReference = this.afStorage.ref('/images/' + randomId);
+    // the put method creates an AngularFireUploadTask
+    // and kicks off the upload
+    const task: AngularFireUploadTask = ref.put(file);
 
-  fakeCollection: Collection = {
-    id: this.fakeCollectionID,
-    question: 'Which dog looks cuter?',
-    data: [
-      {
-        id: 0,
-        name: 'Lab',
-        description: 'Cutest dog around',
-        image: null,
-      },
-      {
-        id: 1,
-        name: 'Husky',
-        description: 'Fierce guard dog who never lets you down',
-        image: null,
-      },
-      {
-        id: 2,
-        name: 'Prairie Dog',
-        description: 'Dog?',
-        image: null,
-      },
-      {
-        id: 3,
-        name: 'Wolf',
-        description: 'Just an untamed dog that definitely will not stoop so low as to play fetch',
-        image: null,
-      },
-    ]
+    return ref.getDownloadURL();
   }
 
-  fakeRanking: Rank = {
-    id: 'JH%@NGG',
-    collectionID: this.fakeCollectionID,
-    data: [2, 1, 0, 3]
+  constructor(private db: AngularFirestore, private afStorage: AngularFireStorage) { }
+
+  /** getCollection
+   * returns collection 
+   * @param collectionID 
+   */
+  getCollection(collectionID: string): Observable<FirestoreCollection> {
+    return this.db.doc<FirestoreCollection>(`/EasyRankingCollection/${collectionID}`).valueChanges();
   }
 
-  constructor() { }
-
-  getCollection(collectionID: string): Collection {
-    return this.fakeCollection;
+  /** getRanking
+   * returns ranking
+   * @param rankID 
+   */
+  getRanking(rankID: string): Observable<Rank> {
+    return this.db.doc<Rank>(`/EasyRankingRanks/${rankID}`).valueChanges();
   }
 
-  getRanking(rankID: string): Rank {
-    return this.fakeRanking;
+  /** uploadCollection
+   * takes a collection and uploads it to the database handling image uploads and returning the auto generated ID for link sharing
+   * @param newCollection 
+   */
+  async uploadCollection(newCollection: Collection): Promise<string> {
+
+    // upload images and get download urls
+    let itemUploads = newCollection.data.map(item => {
+      return new Observable<FirestoreItem>((observer) => {
+        this.uploadImage(item.image).subscribe(downloadURL => {
+          
+          // convert item to firestore item by using the downloadURL of the image uploaded on our cloud storage
+          const firestoreItem: FirestoreItem = {
+            id: item.id,
+            name: item.name,
+            description: item.description,
+            imageDownloadURL: downloadURL,
+          };
+
+          // send the value (next) and inform forkJoin that this is the last value sent (complete)
+          observer.next(firestoreItem);
+          observer.complete();
+        });
+      });
+    });
+
+    // once all images have been uploaded and the download url's are received, upload the collection to the firebase
+    const firestoreItems: Array<FirestoreItem> = await forkJoin(itemUploads).toPromise();
+    const ref = await this.db.collection('EasyRankingCollection').add({...newCollection, data: firestoreItems});
+    return ref.id;
+
   }
 
-  uploadCollection(newCollection: Collection): string {
-    return '4##45%';
-  }
-
-  uploadRanking(newRanking: Rank): string {
-    return 'JSDOI%$#';
+  /** uploadRanking
+   * uploads a ranking to the database
+   * @param newRanking 
+   * @returns Promise<string> of the auto generated ID of the ranking for link sharing
+   */
+  async uploadRanking(newRanking: Rank): Promise<string> {
+    const ref = await this.db.collection('EasyRankingRanks').add(newRanking);
+    return ref.id;
   }
 
 }

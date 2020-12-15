@@ -13,4 +13,13 @@ describe('RankerServiceService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+  
+  it('should upload collection', () => {
+    
+  });
+
+  it('should upload rank', () => {
+
+  });
+
 });
