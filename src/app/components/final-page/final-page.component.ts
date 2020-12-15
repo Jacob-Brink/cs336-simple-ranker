@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreCollection, RankerServiceService } from 'src/app/ranker-service.service';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-final-page',
@@ -10,15 +11,16 @@ import { BrowserModule } from '@angular/platform-browser';
 })
 export class FinalPageComponent implements OnInit {
 
-  
   data: FirestoreCollection = null;
 
   /** FinalPageComponent constructor
    * get Ranking, then get Collection and display on page
    * @param rankerService 
    */
-  constructor(private rankerService: RankerServiceService) {
-    this.rankerService.getRanking('IfQ6Cx2fovyBcPH3zKPp').subscribe(rankerData => {
+  constructor(private rankerService: RankerServiceService, private route: ActivatedRoute) { }
+
+  loadData(rankID: string): void {
+    this.rankerService.getRanking(rankID).subscribe(rankerData => {
       this.rankerService.getCollection(rankerData.collectionID).subscribe(collectionData => {
         this.data = {
           id: rankerData.collectionID,
@@ -32,8 +34,18 @@ export class FinalPageComponent implements OnInit {
         console.log(this.data);
       });
     })
-
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const rankID = params['rankid'];
+      if (rankID !== undefined) {
+        this.loadData(rankID);
+      } else {
+        alert("Please specify a rankID");
+      }
+      
+      
+    })
+   }
 }
