@@ -1,6 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FirestoreItem, RankerServiceService } from 'src/app/ranker-service.service';
 import { ItemCardComponent } from '../item-card/item-card.component';
 // import { item } from "../QuizPageComponent";
@@ -12,7 +12,7 @@ import { ItemCardComponent } from '../item-card/item-card.component';
 })
 export class QuizPageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private rankerService: RankerServiceService) { }
+  constructor(private route: ActivatedRoute, private rankerService: RankerServiceService, private router: Router) { }
 
   pivot: item;
   insertedItem: item;
@@ -24,6 +24,7 @@ export class QuizPageComponent implements OnInit {
   display: item[] = [];
   question: string = 'Which is better?';
   completed: boolean = false;
+  collectionID: string = '';
 
 
   getNewPivot(): item {
@@ -71,7 +72,15 @@ export class QuizPageComponent implements OnInit {
         this.insertedItem = newItem;
       } else {
         console.log(this.ranked);
-        alert("Congrats you completed the quiz!!!!");
+        this.rankerService.uploadRanking({
+          id: 'not needed',
+          collectionID: this.collectionID,
+          data: this.ranked.map(item => {
+            return item.id;
+          })
+        }).then(rankID => {
+          this.router.navigateByUrl('/final?rankid=' + rankID);
+        });
         this.completed = true;
         return;
       }
@@ -80,7 +89,6 @@ export class QuizPageComponent implements OnInit {
     } 
 
     this.pivot = this.getNewPivot();
-    console.log(this.pivot);
     this.updateDisplay();
 
   }
@@ -91,6 +99,7 @@ export class QuizPageComponent implements OnInit {
         console.log('invalid collection ID');
       } else {
         // in case collection is retreived, set data to collection
+        this.collectionID = collectionID;
         this.question = val.question;
         this.data = val.data.map((firestoreItem: FirestoreItem) => {
           return {
