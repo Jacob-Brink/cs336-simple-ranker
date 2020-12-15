@@ -6,8 +6,7 @@ import {
   Input,
   NgModule,
 } from '@angular/core';
-
-import { item } from '../final-page/final-page.component';
+import { FirestoreItem } from 'src/app/ranker-service.service';
 
 @Component({
   selector: 'app-item-card',
@@ -16,7 +15,7 @@ import { item } from '../final-page/final-page.component';
 })
 export class ItemCardComponent implements OnInit {
   // declare input variables
-  @Input() item: item; //
+  @Input() item: FirestoreItem; //
 
   // declare output variables
   // @Output('name')

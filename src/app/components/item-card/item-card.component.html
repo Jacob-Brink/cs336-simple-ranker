@@ -3,8 +3,8 @@
     <mat-card-title>{{ item.id }}. {{ item.name }}</mat-card-title>
     <!-- <mat-card-subtitle>{{ item.name }}</mat-card-subtitle> -->
   </mat-card-header>
-  <img mat-card-image src="{{ item.link }}" alt="Photo of a Shiba Inu" />
+  <img mat-card-image src="{{ item.imageDownloadURL }}"/>
   <mat-card-content class="description">
-    <p>My description here</p>
+    <p>{{ item.description }}</p>
   </mat-card-content>
 </mat-card>
