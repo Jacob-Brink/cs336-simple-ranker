@@ -4,14 +4,14 @@ import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask 
 import * as firebase from 'firebase';
 import { forkJoin, Observable } from 'rxjs';
 
-interface FirestoreItem {
+export interface FirestoreItem {
   id: number;
   name: string;
   description?: string;
   imageDownloadURL: string;
 }
 
-interface FirestoreCollection {
+export interface FirestoreCollection {
   id: string;
   question: string;
   data: Array<FirestoreItem>;

@@ -1,6 +1,6 @@
 <div class="final-page">
   <p>final-page works!</p>
-  <div class="flex">
-    <app-item-card *ngFor="let item of data" [item]="item"></app-item-card>
+  <div class="flex" *ngIf="data !== null">
+    <app-item-card *ngFor="let item of data.data" [item]="item"></app-item-card>
   </div>
 </div>
