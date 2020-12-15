@@ -22,6 +22,7 @@ export class FinalPageComponent implements OnInit {
   loadData(rankID: string): void {
     this.rankerService.getRanking(rankID).subscribe(rankerData => {
       this.rankerService.getCollection(rankerData.collectionID).subscribe(collectionData => {
+
         this.data = {
           id: rankerData.collectionID,
           question: collectionData.question,
