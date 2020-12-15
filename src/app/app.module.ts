@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CollectionCreateCardComponent } from './components/collection-create-card/collection-create-card.component';
@@ -50,6 +51,7 @@ import { QuizItemCardComponent } from './components/quiz-item-card/quiz-item-car
     MatInputModule,
     MatIconModule,
     MatCardModule,
+    MatPaginatorModule,
     MatButtonModule,
     AppRoutingModule,
     BrowserAnimationsModule,

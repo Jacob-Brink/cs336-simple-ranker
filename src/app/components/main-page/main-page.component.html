@@ -1,11 +1,20 @@
-<app-page>
-  <!-- <p>main-page works! eyoooo</p> -->
-  <div class="buttons">
-    <a routerLink="/collection">
-      <app-button
-        (onClick)="functioncall($event)"
-        [label]="label1"
-      ></app-button>
-    </a>
+<div class="buttons">
+
+  <div style="width: 400px;height:200px">
+    <p>hi</p>
+    <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
   </div>
-</app-page>
+
+  <a routerLink="/collection">
+    
+    
+    
+    <app-button
+      (onClick)="functioncall($event)"
+      [label]="label1"
+    ></app-button>
+  </a>
+</div>
