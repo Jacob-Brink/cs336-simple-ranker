@@ -1,11 +1,14 @@
 <div id="page-master-container">
-  <div style="flex: 1">
-    <h1 id="title">
-      <i>{{ title }}</i>
-    </h1>
+  <div class="header sticky" style="flex: 1">
+    <a routerLink="/main" (onClick)="functioncall($event)">
+      <h1 id="title">
+        <i>Easy </i>
+        <b>Ranker</b>
+      </h1>
+    </a>
   </div>
 
-  <div style="flex: 1">
+  <div class="content" style="flex: 1">
     <!--- display content of page --->
     <ng-content></ng-content>
   </div>
@@ -37,9 +40,21 @@
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop
+            offset="0%"
+            style="stop-color: rgb(255, 236, 236); stop-opacity: 1"
+          />
+          <stop
+            offset="100%"
+            style="stop-color: rgb(136, 103, 255); stop-opacity: 1"
+          />
+        </linearGradient>
+      </defs>
       <path
         d="M378.5 500.5C253.117 535.118 142.5 476.479 142.5 332C142.5 26 933.5 -264.5 -85.5 -57C-593.172 46.3778 -238.5 746.5 -46.5 1434C107.1 1984 1115.17 1562.83 1600 1283.5C1951.67 1189.33 1955 1283.5 1955 912.5C1955 603.75 1924 555 910 1019C578.043 1170.9 1050 570.5 205 912.5C-144.222 1053.84 594 441 378.5 500.5Z"
-        fill="#d1bcff"
+        fill="url(#grad1)"
       />
     </svg>
   </div>
