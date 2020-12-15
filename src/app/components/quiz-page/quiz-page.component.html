@@ -1,7 +1,7 @@
 <!-- <app-item-card></app-item-card> -->
 
-<div id="quiz-page">
-  <p class="question">quiz-page works!</p>
+<div id="quiz-page" *ngIf="data">
+  <p class="question">{{ question }}</p>
   <div class="flex">
     <app-quiz-item-card
       (click)="reorder(thing)"
