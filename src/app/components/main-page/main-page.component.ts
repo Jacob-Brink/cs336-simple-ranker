@@ -10,7 +10,7 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  label1 = 'create';
+  label1 = 'CREATE';
   label2 = 'quiz';
   label3 = 'final page';
 
