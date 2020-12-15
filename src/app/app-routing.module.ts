@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { QuizPageComponent } from './components/quiz-page/quiz-page.component';
 
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { CollectionPageComponent } from './components/collection-page/collection-page.component';
