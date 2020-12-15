@@ -103,7 +103,6 @@ export class RankerServiceService {
 
     // once all images have been uploaded and the download url's are received, upload the collection to the firebase
     const firestoreItems: Array<FirestoreItem> = await forkJoin(itemUploads).toPromise();
-    console.log(firestoreItems);
     const ref = await this.db.collection('EasyRankingCollection').add({...newCollection, data: firestoreItems});
     return ref.id;
 
