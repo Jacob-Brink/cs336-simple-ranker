@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { RankerServiceService } from 'src/app/ranker-service.service';
 // import { item } from "../QuizPageComponent";
 
 @Component({
@@ -7,7 +9,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./quiz-page.component.scss'],
 })
 export class QuizPageComponent implements OnInit {
-  constructor() {}
+
+  constructor(private route: ActivatedRoute, private rankerService: RankerServiceService) {}
+
   dog1: item = {
     id: 1,
     name: 'dog1',
@@ -62,8 +66,30 @@ export class QuizPageComponent implements OnInit {
   ranked: item[] = [];
   display: item[] = [];
 
+  loadData(collectionID: string): void {
+    this.rankerService.getCollection(collectionID).subscribe(val => {
+      if (val === undefined) {
+        
+      } else {
+        console.log(val);
+      }
+    })
+  }
+
   // This refreshes the whole ranked/data stuff
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const collectionID = params['collectionid'];
+      if (collectionID) {
+        this.loadData(collectionID);
+      } else {
+        alert('Missing collection identifier!');
+      }
+    });
+
+
+
+
     // initialize data
     this.data = [this.dog1, this.dog2, this.dog3, this.dog4, this.dog5];
 
