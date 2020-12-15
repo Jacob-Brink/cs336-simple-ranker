@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RankerServiceService } from 'src/app/ranker-service.service';
+import { FirestoreItem, RankerServiceService } from 'src/app/ranker-service.service';
 // import { item } from "../QuizPageComponent";
 
 @Component({
@@ -10,7 +10,7 @@ import { RankerServiceService } from 'src/app/ranker-service.service';
 })
 export class QuizPageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private rankerService: RankerServiceService) {}
+  constructor(private route: ActivatedRoute, private rankerService: RankerServiceService) { }
 
   dog1: item = {
     id: 1,
@@ -65,13 +65,48 @@ export class QuizPageComponent implements OnInit {
   data: item[] = [];
   ranked: item[] = [];
   display: item[] = [];
+  question: string = 'Which is better?';
+
+  // export type item = {
+  //   id: number;
+  //   name: string;
+  //   link: string;
+  //   description?: string;
+  // };
 
   loadData(collectionID: string): void {
     this.rankerService.getCollection(collectionID).subscribe(val => {
       if (val === undefined) {
-        
+        console.log('invalid collection ID');
       } else {
-        console.log(val);
+        // in case collection is retreived, set data to collection
+        this.question = val.question;
+        this.data = val.data.map((firestoreItem: FirestoreItem) => {
+          return {
+            id: firestoreItem.id,
+            name: firestoreItem.name,
+            link: firestoreItem.imageDownloadURL,
+            description: firestoreItem.description,
+          }
+        })
+
+        //add current first item to ranked array
+        this.ranked.push(this.data[this.data.length - 1]);
+
+        // initialize the ranges
+        this.low = 0; // low is the highest ranked item
+        this.high = 0; //high is the lowest ranked item
+
+        //add current first item to display array
+        this.display.push(this.ranked[0]);
+
+        // delete current last item
+        this.data.pop();
+
+        // add current second item to display
+        this.display.push(this.data[this.data.length - 1]);
+
+
       }
     })
   }
@@ -91,23 +126,9 @@ export class QuizPageComponent implements OnInit {
 
 
     // initialize data
-    this.data = [this.dog1, this.dog2, this.dog3, this.dog4, this.dog5];
+    //this.data = [this.dog1, this.dog2, this.dog3, this.dog4, this.dog5];
 
-    //add current first item to ranked array
-    this.ranked.push(this.data[this.data.length - 1]);
 
-    // initialize the ranges
-    this.low = 0; // low is the highest ranked item
-    this.high = 0; //high is the lowest ranked item
-
-    //add current first item to display array
-    this.display.push(this.ranked[0]);
-
-    // delete current last item
-    this.data.pop();
-
-    // add current second item to display
-    this.display.push(this.data[this.data.length - 1]);
 
     // might not need this
     // this.item1 = this.ranked[this.currentMiddle];
@@ -175,7 +196,7 @@ export class QuizPageComponent implements OnInit {
           0,
           0,
           this.ranked[
-            parseInt(Math.floor((this.low + this.high) / 2).toString())
+          parseInt(Math.floor((this.low + this.high) / 2).toString())
           ]
         );
       }
@@ -215,7 +236,7 @@ export class QuizPageComponent implements OnInit {
           0,
           0,
           this.ranked[
-            parseInt(Math.floor((this.low + this.high) / 2).toString())
+          parseInt(Math.floor((this.low + this.high) / 2).toString())
           ]
         );
       }
