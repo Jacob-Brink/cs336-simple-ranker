@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ElementRef, forwardRef } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR,
 	 NG_VALIDATORS,
 	 ControlValueAccessor,
@@ -26,6 +26,9 @@ import { NG_VALUE_ACCESSOR,
     ],   
 })
 export class ImageInputComponent implements ControlValueAccessor, OnInit, Validator {
+
+    @Input()
+    id: number;
 
     file: File | null = null;
     imageFile: any = null;
