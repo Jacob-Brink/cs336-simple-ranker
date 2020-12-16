@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, Validators, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { RankerServiceService } from 'src/app/ranker-service.service';
+// common-widgets.module.ts
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'app-collection-page',
@@ -15,8 +20,10 @@ export class CollectionPageComponent implements OnInit {
         itemList: new FormArray([]), 
     })
 
+    collectionID: string = null;
+
     constructor(private rankerService: RankerServiceService) {
-	this.addItem();
+	    this.addItem();
     }
 
     ngOnInit(): void {
@@ -38,11 +45,13 @@ export class CollectionPageComponent implements OnInit {
     }
 
     removeItem(event: number): void {
-	this.itemList.removeAt(event);
+	    this.itemList.removeAt(event);
     }
 
-    onSubmit(): void {
-        this.rankerService.uploadCollection({
+
+
+    async onSubmit(): Promise<void> {
+        this.collectionID = await this.rankerService.uploadCollection({
             id: '00',
             question: this.form.get('question').value,
             data: this.form.get('itemList').value.map((item, index) => {

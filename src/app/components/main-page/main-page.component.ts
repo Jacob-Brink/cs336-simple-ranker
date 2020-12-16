@@ -20,7 +20,20 @@ export class MainPageComponent implements OnInit {
   
   constructor(private rankerService: RankerServiceService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const stuff = this.rankerService.getPage({
+      collectionName: 'EasyRankingCollection',
+      sortMethod: this.sortMethod,
+      limit: this.limit,
+      direction: this.direction
+    }).subscribe(data => {
+      console.log("AAAAAAAAAAAAAAAAAAAAAA");
+      console.log(data);
+    });
+
+    console.log(stuff);
+
+  }
 
   functioncall(event) {
     console.log('functioncall', event);
@@ -35,7 +48,7 @@ export class MainPageComponent implements OnInit {
     },
       this.lastValue
     ).onSnapshot(value => {
-
+      console.log(value);
     });
     console.log(e);
   }

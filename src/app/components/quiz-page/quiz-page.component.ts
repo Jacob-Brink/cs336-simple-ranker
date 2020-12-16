@@ -77,7 +77,8 @@ export class QuizPageComponent implements OnInit {
           collectionID: this.collectionID,
           data: this.ranked.map(item => {
             return item.id;
-          })
+          }),
+          timeStamp: Date.now()
         }).then(rankID => {
           this.router.navigateByUrl('/final?rankid=' + rankID);
         });
