@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import * as firebase from 'firebase';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable, } from 'rxjs';
+
+import { first, take } from 'rxjs/operators';
 
 export interface FirestoreItem {
   id: number;
@@ -11,10 +13,18 @@ export interface FirestoreItem {
   imageDownloadURL: string;
 }
 
+interface ItemScore {
+  id: number;
+  averagePosition: null | number;
+}
+
 export interface FirestoreCollection {
   id: string;
   question: string;
   data: Array<FirestoreItem>;
+  timeStamp: number;
+  averageRanking: Array<ItemScore>;
+  rankings: number;
 }
 
 export interface Item {
@@ -125,7 +135,12 @@ export class RankerServiceService {
 
     // once all images have been uploaded and the download url's are received, upload the collection to the firebase
     const firestoreItems: Array<FirestoreItem> = await forkJoin(itemUploads).toPromise();
-    const ref = await this.db.collection('EasyRankingCollection').add({...newCollection, data: firestoreItems});
+    const ref = await this.db.collection('EasyRankingCollection').add({...newCollection, data: firestoreItems, timeStamp: Date.now(), rankings: 0, averageRanking: firestoreItems.map(item => {
+      return {
+        id: item.id,
+        avgeragePostition: null,
+      }
+    })});
     console.log(ref.id);
     return ref.id;
 
@@ -138,6 +153,20 @@ export class RankerServiceService {
    */
   async uploadRanking(newRanking: Rank): Promise<string> {
     const ref = await this.db.collection('EasyRankingRanks').add(newRanking);
+    const doc = this.db.doc<FirestoreCollection>(`/EasyRankingCollection/${newRanking.collectionID}`);
+    
+    doc.valueChanges().pipe(first()).subscribe(collection => {
+      console.log("hey");
+      console.log(collection);
+      doc.update({averageRanking: collection.averageRanking.map(itemAverage => {
+        return {
+          id: itemAverage.id,
+          averagePosition: itemAverage.averagePosition * (collection.rankings) / (collection.rankings + 1) + newRanking.data[itemAverage.id] / (collection.rankings+1)
+        }
+      }),
+      rankings: collection.rankings+1,
+    })
+    })
     return ref.id;
   }
 

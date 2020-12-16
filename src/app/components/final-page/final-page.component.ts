@@ -30,7 +30,10 @@ export class FinalPageComponent implements OnInit {
             return collectionData.data.filter(collectionItem => {
               return collectionItem.id === itemID;
             })[0];
-          })
+          }),
+          timeStamp: collectionData.timeStamp,
+          rankings: collectionData.rankings,
+          averageRanking: collectionData.averageRanking,
         };
         console.log(this.data);
       });
