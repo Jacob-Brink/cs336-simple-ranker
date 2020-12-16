@@ -54,7 +54,8 @@ export class MainPageComponent implements OnInit {
     console.log(e);
   }
 
-  ff() {
+  goToQuiz(collectionID) {
+    window.open('http://localhost:4200/quiz?collectionid=' + collectionID);
   }
 
   changeSortingMethod(e: Event){
