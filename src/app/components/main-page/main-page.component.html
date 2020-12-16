@@ -8,7 +8,7 @@
   </a>
 </div>
 
-<mat-form-field appearance="fill">
+<!-- <mat-form-field appearance="fill">
   <mat-label>Sort by</mat-label>
   <mat-select (selectionChange)="changeSortingMethod($event)">
     <mat-option value="timestamp">Date Added</mat-option>
@@ -31,10 +31,12 @@
     [pageSizeOptions]="[5, 10, 25, 100]"
     (page)="pageChanged($event)">
   </mat-paginator>
-</div>
+</div> -->
 
 <div *ngIf="collectionGallery" id="showcase">
-  <app-collection-show-card *ngFor="let item of collectionGallery" [item]="item" (click)="ff()"></app-collection-show-card>
+  <div *ngFor="let item of collectionGallery" class="showcard">
+    <app-collection-show-card  [item]="item" (click)="ff()"></app-collection-show-card>
+  </div>
 </div>
 
 
