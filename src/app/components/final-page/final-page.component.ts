@@ -24,7 +24,8 @@ export class FinalPageComponent implements OnInit {
   constructor(
     private rankerService: RankerServiceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private clipboard: Clipboard
   ) {}
 
   loadData(rankID: string): void {
@@ -49,11 +50,14 @@ export class FinalPageComponent implements OnInit {
     });
   }
 
+  // function that copies the code for the unranked collection to clipboard
   shareCollection() {
-    console.log(this.data.id);
+    this.clipboard.writeText(this.data.id);
   }
+
+  // function that copise the code for the current ranked collection to clipboard
   shareRanked() {
-    console.log(this.router.url);
+    this.clipboard.writeText(this.router.url);
   }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {

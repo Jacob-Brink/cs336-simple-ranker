@@ -8,30 +8,7 @@
   </a>
 </div>
 
-<!-- <mat-form-field appearance="fill">
-  <mat-label>Sort by</mat-label>
-  <mat-select (selectionChange)="changeSortingMethod($event)">
-    <mat-option value="timestamp">Date Added</mat-option>
-    <mat-option value="rankings">Popularity</mat-option>
-  </mat-select>
-</mat-form-field>
 
-<mat-form-field appearance="fill">
-  <mat-label>Direction</mat-label>
-  <mat-select (selectionChange)="changeSortingMethod($event)">
-    <mat-option value="asc">Ascending</mat-option>
-    <mat-option value="desc">Descending</mat-option>
-  </mat-select>
-</mat-form-field>
-
-<div>
-  <mat-paginator 
-    [length]="100"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25, 100]"
-    (page)="pageChanged($event)">
-  </mat-paginator>
-</div> -->
 
 <div *ngIf="collectionGallery" id="showcase">
   <div *ngFor="let item of collectionGallery" class="showcard">
