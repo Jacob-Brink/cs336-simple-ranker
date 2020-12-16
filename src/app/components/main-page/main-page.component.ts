@@ -55,7 +55,6 @@ export class MainPageComponent implements OnInit {
   }
 
   ff() {
-    alert("ffff");
   }
 
   changeSortingMethod(e: Event){
