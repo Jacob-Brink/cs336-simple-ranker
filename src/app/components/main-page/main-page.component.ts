@@ -9,21 +9,34 @@ import { RankerServiceService } from 'src/app/ranker-service.service';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
+  
+  sortMethod: string = 'timestamp';
+  limit: number = 5;
+  direction: 'asc' | 'desc' = 'asc';
+  
+  label1: string = "CREATE";
+  lastValue: any;
+  firstValue: any;
+  
   constructor(private rankerService: RankerServiceService) {}
 
   ngOnInit(): void {}
-
-  sortMethod: FormControl = new FormControl('');
-
-  label1 = 'CREATE';
-  label2 = 'quiz';
-  label3 = 'final page';
 
   functioncall(event) {
     console.log('functioncall', event);
   }
 
   pageChanged(e: Event) {
+    this.rankerService.getNextPage({
+      collectionName: '/EasyRankingCollection',
+      sortMethod: this.sortMethod,
+      limit: this.limit,
+      direction: this.direction,
+    },
+      this.lastValue
+    ).onSnapshot(value => {
+
+    });
     console.log(e);
   }
 
