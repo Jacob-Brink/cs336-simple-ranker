@@ -30,7 +30,7 @@ Doing so helps build a simple, intuitive ranking process where n items all get r
     - Collection Creator Page
     - Collection Creator Card component
     - Page Component
-    - 
+    - Added custom reactive forms image input component
     - Finished up whatever the rest of us got stuck on
     
 
@@ -46,14 +46,14 @@ Please click [here](https://www.figma.com/file/E92m3RtZeQqNP3lHO6SRUn/Easy-Ranke
     - Randomly Generated Unique IDs  (be used for the link)
     - Collection Title
     - Item List
-        - Unique ID
-        - Picture
-        - Title
-        - Description (optional)
+      - Unique ID
+      - Picture
+      - Title
+      - Description (optional)
     - Rankings
-        - Randomly Generated Unique ID (be used for the link)
-        - ID of collection being ranked
-        - List of Collection Items’ IDs in order
+      - Randomly Generated Unique ID (be used for the link)
+      - ID of collection being ranked
+      - List of Collection Items’ IDs in order
 
 ### A plan for implementation -- what components you will be creating in which order.	
 
