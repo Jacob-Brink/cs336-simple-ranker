@@ -10,14 +10,14 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { firebaseConfig } from './credentials';
 
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { CollectionCreateCardComponent } from './components/collection-create-card/collection-create-card.component';
 import { CollectionPageComponent } from './pages/collection-page/collection-page.component';
 import { ImageInputComponent } from './components/image-input/image-input.component';
@@ -42,7 +42,7 @@ import { CollectionShowCardComponent } from './components/collection-show-card/c
     ButtonComponent,
     ItemCardComponent,
     QuizItemCardComponent,
-    CollectionShowCardComponent,
+    CollectionShowCardComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
@@ -61,10 +61,10 @@ import { CollectionShowCardComponent } from './components/collection-show-card/c
     BrowserAnimationsModule,
 
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule,
+    AngularFirestoreModule
   ],
   providers: [RankerServiceService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
