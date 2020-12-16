@@ -1,12 +1,10 @@
-
 <div class="buttons">
   <a routerLink="/collection">
-    <app-button
-      (onClick)="functioncall($event)"
-      [label]="label1"
-    ></app-button>
+    <app-button (onClick)="functioncall($event)" [label]="label1"></app-button>
   </a>
 </div>
+
+<!-- TODO: Have options to sort showcased collections by date/popularity -->
 
 <!-- <mat-form-field appearance="fill">
   <mat-label>Sort by</mat-label>
@@ -25,7 +23,7 @@
 </mat-form-field>
 
 <div>
-  <mat-paginator 
+  <mat-paginator
     [length]="100"
     [pageSize]="10"
     [pageSizeOptions]="[5, 10, 25, 100]"
@@ -33,10 +31,14 @@
   </mat-paginator>
 </div> -->
 
+<!-- TODO: Showcase a list of recent/popular collections that users can directly go to -->
+<!-- Currently it displays a bunch of test collections that we were using during development -->
+
 <div *ngIf="collectionGallery" id="showcase">
   <div *ngFor="let item of collectionGallery" class="showcard">
-    <app-collection-show-card  [item]="item" (onPressed)="goToQuiz($event)"></app-collection-show-card>
+    <app-collection-show-card
+      [item]="item"
+      (onPressed)="goToQuiz($event)"
+    ></app-collection-show-card>
   </div>
 </div>
-
-

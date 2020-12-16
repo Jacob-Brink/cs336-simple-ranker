@@ -1,24 +1,12 @@
 .item-card {
-  width: 50%;
-  height: 10%;
-  margin: auto;
+  max-width: 400px;
+  margin: 0 200px 0 200px;
 }
 
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.full-width {
-  width: 100%;
-}
-
-#delete-button {
-  margin-left: auto;
-}
-
-.img {
-  max-width: 600px;
-  height: auto;
+img {
+  object-fit: cover;
+  background-size: cover;
+  width: 300px;
+  height: 400px;
+  max-width: 400px;
 }
