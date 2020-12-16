@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { FirestoreCollection } from 'src/app/ranker-service.service';
 
 @Component({
@@ -22,6 +22,9 @@ export class CollectionShowCardComponent implements OnInit {
   @Input()
   item: FirestoreCollection;
 
+  @Output()
+  onPressed: EventEmitter<string> = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -29,6 +32,11 @@ export class CollectionShowCardComponent implements OnInit {
     this.rankings = this.item.rankings;
     this.collectionID = this.item.id;
     this.image = this.item.data[0].imageDownloadURL;
+  }
+
+  @HostListener('click', ['$event'])
+  onClick(e) {
+    this.onPressed.emit(this.item.id);
   }
 
 }
