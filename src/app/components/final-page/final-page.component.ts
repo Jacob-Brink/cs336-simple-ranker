@@ -48,8 +48,6 @@ export class FinalPageComponent implements OnInit {
       } else {
         alert("Please specify a rankID");
       }
-      
-      
     })
    }
 }

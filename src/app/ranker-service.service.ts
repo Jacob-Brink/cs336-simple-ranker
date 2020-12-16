@@ -44,6 +44,7 @@ export interface Rank {
   id: string;
   collectionID: string;
   data: Array<number>;
+  timeStamp: number;
 }
 
 export interface FirestorePage {
@@ -69,6 +70,21 @@ export class RankerServiceService {
 
   getPreviousPage(pageData: FirestorePage, firstValue) {
     return this.db.collection(pageData.collectionName).ref.orderBy(pageData.sortMethod).endBefore(firstValue).limit(pageData.limit);
+  }
+
+  getPage(pageData: FirestorePage) {
+    return new Observable(observer => {
+      this.db.collection(pageData.collectionName).ref.get().then(data => {
+        const collection = [];
+        data.forEach(item => {
+          console.log(item.data());
+          collection.push(item.data());
+        });
+
+        observer.next(collection);
+        observer.complete();
+      }); 
+    })  
   }
 
   //https://medium.com/@AnkitMaheshwariIn/how-to-upload-and-display-image-file-in-pwa-angular-project-using-firebase-cloud-storage-and-95763bc83da7

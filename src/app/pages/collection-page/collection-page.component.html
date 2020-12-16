@@ -1,3 +1,14 @@
+
+<div *ngIf="collectionID">
+  {{collectionID}}
+  <a routerLink="/quiz?collectionid={{collectionID}}">
+    <app-button
+      (onClick)="functioncall($event)"
+      label="Share this as a quiz!"
+    ></app-button>
+  </a>
+</div>
+
 <form [formGroup]="form">
 
   <mat-form-field class="full-width" id="name-field">
