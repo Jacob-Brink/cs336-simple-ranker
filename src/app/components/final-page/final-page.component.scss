@@ -1,6 +1,5 @@
 .final-page {
   width: 100%;
-  // min-width: 2000px;
   height: auto;
   margin: 0 auto;
   display: inline;
@@ -13,4 +12,19 @@
   flex-shrink: 3;
   flex-direction: column;
   display: flex;
+}
+
+.share {
+  order: 1px solid #3b0d9c;
+  border-radius: 5px;
+  background: #3b0d9c;
+  padding: 10px 10px;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
 }

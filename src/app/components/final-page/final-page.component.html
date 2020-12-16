@@ -3,3 +3,7 @@
     <app-item-card *ngFor="let item of data.data" [item]="item"></app-item-card>
   </div>
 </div>
+
+<button class="share" [disabled]="!form.valid" (click)="shareCollection()">Share Collection</button>
+<button class="share" [disabled]="!form.valid" (click)="shareRanked()">Share Rank</button>
+
