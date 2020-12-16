@@ -30,7 +30,7 @@ Doing so helps build a simple, intuitive ranking process where n items all get r
     - Collection Creator Page
     - Collection Creator Card component
     - Page Component
-    - 
+    - Added custom reactive forms image input component
     - Finished up whatever the rest of us got stuck on
     
 
@@ -40,20 +40,73 @@ Doing so helps build a simple, intuitive ranking process where n items all get r
 
 Please click [here](https://www.figma.com/file/E92m3RtZeQqNP3lHO6SRUn/Easy-Ranker?node-id=0%3A1) to see our preliminary design.
 
+### An initial description of the components you'll create, what each component's purpose is, what data it will maintain, and what API it will make available.
+
+- Page
+    - Style
+        - Title Text
+        - Cool, possibly procedurally generated background wave of purple
+        - Content area designated for child elements
+    - API
+        - Inputs
+        - Title text
+        - Children elements to be displayed
+- Collection Creator Card
+    - Style
+        - Image Component
+            - Allow for copying images for uploading simplicity
+        - Title Text
+        - Item Description
+        - Delete Button
+    - API
+        - Inputs
+            - Image
+            - Title Text
+            - Item Description
+        - Outputs
+            - onDelete callback
+            - onUpdate callback: returns data for item
+- Item Card (this or that comparison)
+    - Input
+        - Unique ID
+        - Title
+        - Image	
+        - Description(optional)
+    - Output
+        - onClick -> proceeds to next this or that comparison
+- Final Ranking Slider
+    - Input
+        - Collection of the items sorted by the user from taking the quiz
+    - Output
+        - When the user selects one item on the bottom bar, the three magnified and detailed items at the top will change to feature that item selected along with the item ranked immediately below and above it.
+- Main Page
+    - Create Button -> Collection Creator
+- Collection Page 
+    - New Button -> creates a new collection creator card
+    - Share & Publish Button -> Quiz Page
+- Final Page
+    - List of Item Cards sorted by user
+    - Share button -> give user a link to share the ranking with others
+- Quiz Page
+    - Question Text
+    - Item card side by side
+    - onClick -> goes to next thing
+
+
 ### The structure of your NoSQL database, if you'll be using one.
 
 - Collections
     - Randomly Generated Unique IDs  (be used for the link)
     - Collection Title
     - Item List
-        - Unique ID
-        - Picture
-        - Title
-        - Description (optional)
+      - Unique ID
+      - Picture
+      - Title
+      - Description (optional)
     - Rankings
-        - Randomly Generated Unique ID (be used for the link)
-        - ID of collection being ranked
-        - List of Collection Items’ IDs in order
+      - Randomly Generated Unique ID (be used for the link)
+      - ID of collection being ranked
+      - List of Collection Items’ IDs in order
 
 ### A plan for implementation -- what components you will be creating in which order.	
 
