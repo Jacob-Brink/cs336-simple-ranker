@@ -3,6 +3,11 @@
   margin: 20px;
 }
 
+a {
+  color: white;
+  text-decoration: none; /* no underline */
+}
+
 .header {
   position: sticky;
   background-color: #3b0d9c;
