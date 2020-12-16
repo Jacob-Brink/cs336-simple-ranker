@@ -38,7 +38,7 @@
   <div *ngFor="let item of collectionGallery" class="showcard">
     <app-collection-show-card
       [item]="item"
-      (click)="ff()"
+      (onPressed)="goToQuiz($event)"
     ></app-collection-show-card>
   </div>
 </div>

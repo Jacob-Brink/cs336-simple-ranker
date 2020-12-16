@@ -157,6 +157,8 @@ export class RankerServiceService {
         averagePosition: 0,
       }
     })});
+
+    this.db.doc<FirestoreCollection>(`/EasyRankingCollection/${ref.id}`).update({id: ref.id});
     console.log(ref.id);
     return ref.id;
 
