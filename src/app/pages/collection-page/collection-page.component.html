@@ -1,7 +1,6 @@
-
 <div *ngIf="collectionID">
-  {{collectionID}}
-  <a routerLink="/quiz?collectionid={{collectionID}}">
+  {{ collectionID }}
+  <a routerLink="/quiz?collectionid={{ collectionID }}">
     <app-button
       (onClick)="functioncall($event)"
       label="Share this as a quiz!"
@@ -10,15 +9,24 @@
 </div>
 
 <form [formGroup]="form">
-
   <mat-form-field class="full-width" id="name-field">
     <mat-label>Question</mat-label>
-    <input type="Name" formControlName="question" placeholder="Ex. Lord of The Rings" required="true" matInput>
+    <input
+      type="Name"
+      formControlName="question"
+      placeholder="Ex. Lord of The Rings"
+      required="true"
+      matInput
+    />
   </mat-form-field>
 
   <div formArrayName="itemList">
     <div *ngFor="let item of itemList.controls; index as i">
-      <app-collection-create-card [index]="i" [formGroup]="itemList.controls[i]" (onDelete)="removeItem($event)"></app-collection-create-card>
+      <app-collection-create-card
+        [index]="i"
+        [formGroup]="itemList.controls[i]"
+        (onDelete)="removeItem($event)"
+      ></app-collection-create-card>
     </div>
   </div>
 
@@ -26,7 +34,13 @@
     <app-collection-create-card [index]="i" [formGroup]="items.controls[i]" (onDelete)="removeItem($event)"></app-collection-create-card>
   </div> -->
   <button id="create-new-item" (click)="addItem()">Add Item</button>
-  
-  <button type="submit" [disabled]="!form.valid" (click)="onSubmit()">Submit</button>
-  
+
+  <button
+    id="submit-button"
+    type="submit"
+    [disabled]="!form.valid"
+    (click)="onSubmit()"
+  >
+    Submit
+  </button>
 </form>

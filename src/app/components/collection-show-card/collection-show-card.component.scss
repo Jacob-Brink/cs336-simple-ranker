@@ -1,16 +1,16 @@
 #img {
-    
-    height: 100px;
-    width: 100px;
-    border-radius: 7px;
-    object-fit: cover;
+  height: 100px;
+  width: 100px;
+  border-radius: 7px;
+  object-fit: cover;
 }
 
 .item-card {
-    width: 100px;
+  width: 100px;
 }
 
 .title {
-    width: 100%;
-    text-overflow: ellipsis;
+  width: 100%;
+  //   text-overflow: contain;
+  font-size: 18px;
 }
