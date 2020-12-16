@@ -54,6 +54,10 @@ export class MainPageComponent implements OnInit {
     console.log(e);
   }
 
+  ff() {
+    alert("ffff");
+  }
+
   changeSortingMethod(e: Event){
     console.log(e);
   }
