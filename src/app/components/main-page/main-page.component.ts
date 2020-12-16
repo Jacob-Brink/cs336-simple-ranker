@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
-import { RankerServiceService } from 'src/app/ranker-service.service';
+import { FirestoreCollection, RankerServiceService } from 'src/app/ranker-service.service';
 
 @Component({
   selector: 'app-main-page',
@@ -17,6 +17,8 @@ export class MainPageComponent implements OnInit {
   label1: string = "CREATE";
   lastValue: any;
   firstValue: any;
+
+  collectionGallery: Array<FirestoreCollection> = null;
   
   constructor(private rankerService: RankerServiceService) {}
 
@@ -27,8 +29,7 @@ export class MainPageComponent implements OnInit {
       limit: this.limit,
       direction: this.direction
     }).subscribe(data => {
-      console.log("AAAAAAAAAAAAAAAAAAAAAA");
-      console.log(data);
+      this.collectionGallery = data as Array<FirestoreCollection>;
     });
 
     console.log(stuff);
@@ -51,6 +52,10 @@ export class MainPageComponent implements OnInit {
       console.log(value);
     });
     console.log(e);
+  }
+
+  ff() {
+    alert("ffff");
   }
 
   changeSortingMethod(e: Event){

@@ -32,6 +32,9 @@
     (page)="pageChanged($event)">
   </mat-paginator>
 </div>
-<!-- 
-<div *ngFor="let item of page.data" [item]="item">{{item.id}}</div> -->
+
+<div *ngIf="collectionGallery" id="showcase">
+  <app-collection-show-card *ngFor="let item of collectionGallery" [item]="item" (click)="ff()"></app-collection-show-card>
+</div>
+
 

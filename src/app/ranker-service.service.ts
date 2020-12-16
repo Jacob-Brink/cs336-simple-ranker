@@ -154,7 +154,7 @@ export class RankerServiceService {
     const ref = await this.db.collection('EasyRankingCollection').add({...newCollection, data: firestoreItems, timeStamp: Date.now(), rankings: 0, averageRanking: firestoreItems.map(item => {
       return {
         id: item.id,
-        avgeragePostition: null,
+        averagePosition: 0,
       }
     })});
     console.log(ref.id);

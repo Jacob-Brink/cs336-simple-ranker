@@ -28,6 +28,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { QuizItemCardComponent } from './components/quiz-item-card/quiz-item-card.component';
+import { CollectionShowCardComponent } from './components/collection-show-card/collection-show-card.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { QuizItemCardComponent } from './components/quiz-item-card/quiz-item-car
     ButtonComponent,
     ItemCardComponent,
     QuizItemCardComponent,
+    CollectionShowCardComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
