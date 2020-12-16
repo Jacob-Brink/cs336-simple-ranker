@@ -10,6 +10,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { firebaseConfig } from './credentials';
 
+import {MatSelectModule} from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -51,6 +52,7 @@ import { QuizItemCardComponent } from './components/quiz-item-card/quiz-item-car
     MatInputModule,
     MatIconModule,
     MatCardModule,
+    MatSelectModule,
     MatPaginatorModule,
     MatButtonModule,
     AppRoutingModule,

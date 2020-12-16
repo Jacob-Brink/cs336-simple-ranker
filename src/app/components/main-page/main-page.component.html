@@ -1,20 +1,37 @@
+
 <div class="buttons">
-
-  <div style="width: 400px;height:200px">
-    <p>hi</p>
-    <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]">
-</mat-paginator>
-  </div>
-
   <a routerLink="/collection">
-    
-    
-    
     <app-button
       (onClick)="functioncall($event)"
       [label]="label1"
     ></app-button>
   </a>
 </div>
+
+<mat-form-field appearance="fill">
+  <mat-label>Sort by</mat-label>
+  <mat-select (selectionChange)="changeSortingMethod($event)">
+    <mat-option value="timestamp">Date Added</mat-option>
+    <mat-option value="rankings">Popularity</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Direction</mat-label>
+  <mat-select (selectionChange)="changeSortingMethod($event)">
+    <mat-option value="asc">Ascending</mat-option>
+    <mat-option value="desc">Descending</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div>
+  <mat-paginator 
+    [length]="100"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="pageChanged($event)">
+  </mat-paginator>
+</div>
+<!-- 
+<div *ngFor="let item of page.data" [item]="item">{{item.id}}</div> -->
+

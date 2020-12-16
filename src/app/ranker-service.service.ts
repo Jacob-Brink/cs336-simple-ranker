@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import * as firebase from 'firebase';
 import { forkJoin, Observable } from 'rxjs';
@@ -36,10 +36,30 @@ export interface Rank {
   data: Array<number>;
 }
 
+export interface FirestorePage {
+  collectionName: string;
+  sortMethod: string;
+  limit: number;
+  direction: 'asc' | 'desc';
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class RankerServiceService {
+
+  sortMethod: string;
+  limit: number;
+  pageCollectionRef: any;
+  collectionName: string;
+
+  getNextPage(pageData: FirestorePage, lastValue) {
+    return this.db.collection(pageData.collectionName).ref.orderBy(pageData.sortMethod).startAfter(lastValue).limit(pageData.limit);
+  }
+
+  getPreviousPage(pageData: FirestorePage, firstValue) {
+    return this.db.collection(pageData.collectionName).ref.orderBy(pageData.sortMethod).endBefore(firstValue).limit(pageData.limit);
+  }
 
   //https://medium.com/@AnkitMaheshwariIn/how-to-upload-and-display-image-file-in-pwa-angular-project-using-firebase-cloud-storage-and-95763bc83da7
   uploadImage(file: File): Observable<string> {
@@ -75,6 +95,8 @@ export class RankerServiceService {
   getRanking(rankID: string): Observable<Rank> {
     return this.db.doc<Rank>(`/EasyRankingRanks/${rankID}`).valueChanges();
   }
+
+
 
   /** uploadCollection
    * takes a collection and uploads it to the database handling image uploads and returning the auto generated ID for link sharing
