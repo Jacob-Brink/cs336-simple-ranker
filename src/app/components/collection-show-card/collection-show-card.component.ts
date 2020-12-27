@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { FirestoreCollection } from 'src/app/ranker-service.service';
+import { FirestoreCollection, FirestoreItem } from 'src/app/ranker-service.service';
 
 @Component({
   selector: 'app-collection-show-card',
@@ -22,16 +22,23 @@ export class CollectionShowCardComponent implements OnInit {
   @Input()
   item: FirestoreCollection;
 
+  highestRankedItem: FirestoreItem;
+  lowestRankedItem: FirestoreItem;
+
   @Output()
   onPressed: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
+  
+
   ngOnInit(): void {
     this.question = this.item.question;
     this.rankings = this.item.rankings;
     this.collectionID = this.item.id;
-    this.image = this.item.data[0].imageDownloadURL;
+    this.highestRankedItem = this.item.data[this.item.averageRanking.sort((a, b) => { return a.averagePosition - b.averagePosition; })[this.item.data.length-1].id];
+    this.lowestRankedItem = this.item.data[this.item.averageRanking.sort((a, b) => { return b.averagePosition - a.averagePosition; })[this.item.data.length-1].id];
+    this.image = this.highestRankedItem.imageDownloadURL;
   }
 
   @HostListener('click', ['$event'])
