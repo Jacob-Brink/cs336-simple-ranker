@@ -10,7 +10,6 @@ import {
 import { Router } from '@angular/router';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { RankerServiceService } from 'src/app/ranker-service.service';
-// common-widgets.module.ts
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 
@@ -21,7 +20,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CollectionPageComponent implements OnInit {
   form = new FormGroup({
-    question: new FormControl('Which is better?', [Validators.required]),
+    question: new FormControl('', [Validators.required]),
     itemList: new FormArray([]),
   });
 
@@ -59,18 +58,22 @@ export class CollectionPageComponent implements OnInit {
    * it is only clickable if there is at least one item fully completed with images and a name
    */
   async onSubmit(): Promise<void> {
-    this.collectionID = await this.rankerService.uploadCollection({
-      id: '00',
-      question: this.form.get('question').value,
-      data: this.form.get('itemList').value.map((item, index) => {
-        return {
-          id: index,
-          name: item.title,
-          description: item.description || '',
-          image: item.image,
-        };
-      }),
-    });
-    console.log(this.form.get('itemList').value);
+    if (this.form.valid) {
+      this.collectionID = await this.rankerService.uploadCollection({
+        id: '00',
+        question: this.form.get('question').value,
+        data: this.form.get('itemList').value.map((item, index) => {
+          return {
+            id: index,
+            name: item.title,
+            description: item.description || '',
+            image: item.image,
+          };
+        }),
+      });
+    } else {
+      console.log(this.form.errors);
+    }
   }
+    
 }

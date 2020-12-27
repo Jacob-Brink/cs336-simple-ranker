@@ -66,7 +66,7 @@ export class QuizPageComponent implements OnInit {
       this.high = this.ranked.length;
 
       // 3. update insertedItem
-      const newItem = this.data.pop();
+      const newItem = this.data.pop();  
       
       if (newItem) {
         this.insertedItem = newItem;

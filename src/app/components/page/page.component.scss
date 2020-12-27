@@ -59,7 +59,16 @@ svg {
 // }
 
 #page-content {
-  z-index: 100; // this forces the element to be displayed on top of elements with a smaller z-index. In this case, that would be .svg-class
+  z-index: 100;
+}
+
+.content {
+  width: 90%;
+  
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
 }
 
 #page-master-container {

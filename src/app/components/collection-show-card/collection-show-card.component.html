@@ -1,10 +1,23 @@
 <mat-card class="item-card">
-    <mat-card-header>
-      <mat-card-title class="title">{{question}}</mat-card-title>
-    </mat-card-header>
+  <img id="img" src="{{ image }}" />
 
-  <mat-card-content>
-    <img id="img" src="{{ image }}" />
-    <p>Total Rankings: {{ rankings }}</p>
+  <p class="title">
+    {{question}}
+  </p>        
+
+  <mat-card-content id="stats-container">
+    <div class="stats-sub-container">
+      <p class="stats-label">Highest: </p> <p class="stats-value">{{ highestRankedItem.name }}</p>
+    </div>
+
+    <div class="stats-sub-container">
+      <p class="stats-label">Lowest:</p> <p class="stats-value">{{ lowestRankedItem.name }}</p>
+    </div>
+    
+    <div class="stats-sub-container">
+      <p class="stats-label">Total Rankings:</p> <p class="stats-value"> {{ rankings }}</p>
+    </div>
+    
+    
   </mat-card-content>
 </mat-card>
